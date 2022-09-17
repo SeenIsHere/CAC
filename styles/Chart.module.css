@@ -1,0 +1,16 @@
+.chartContainer {
+    width: 100vw;
+    height: 100vh;
+    background: #333;
+  }
+  
+  .pieContainer {
+    width: 90vh;
+  }
+  /* 
+  .timeframeSelect {
+    width: 100vw !important;
+  }
+  .timeframe {
+    width: 33.33vw !important;
+  } */
