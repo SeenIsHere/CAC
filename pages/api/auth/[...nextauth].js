@@ -7,9 +7,10 @@ export default NextAuth({
     SpotifyProvider({
       clientId: spotifyOptions.client_id,
       clientSecret: spotifyOptions.client_secret,
-      authorization: 'https://accounts.spotify.com/authorize?scope=user-read-email,playlist-read-private',
+      authorization: 'https://accounts.spotify.com/authorize?scope=user-top-read,user-read-email',
     })
   ],
+  session: { jwt: true },
   callbacks: {
     async jwt({ token, account }) {
 
