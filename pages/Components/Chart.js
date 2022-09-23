@@ -2,11 +2,6 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import { Nav } from "react-bootstrap"
 import { useState } from "react"
-import { useSession, signIn, signOut } from "next-auth/react"
-
-import "../styles/Chart.module.css"
-
-import LoadingPage from "./LoadingPage";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -38,11 +33,14 @@ const validShades = [
   "#090105"
 ]
 
-const App = ({ wordData }) => {
-  const [timeframe, setTimeframe] = useState(1)
+const App = ({ shortData, mediumData, longData }) => {
+  const [timeframe, setTimeframe] = useState(2)
   
   const createOptions = (data) => {
-    var entries = Object.entries(data);
+    const entries = Object.entries(data)
+       .sort((a, b) => b[1] - a[1])
+      .slice(0, 100)
+
 
     var labels = entries.map((x) => x[0]);
     var dataValues = entries.map((x) => x[1]);
@@ -51,7 +49,7 @@ const App = ({ wordData }) => {
     var backgroundColors = [];
 
     labels.forEach((x, i) => {
-    backgroundColors.push(validShades[24 - i])
+    backgroundColors.push(validShades[ 24-i % 24])
     })
 
     return {
@@ -60,7 +58,7 @@ const App = ({ wordData }) => {
         {
           label: "Words",
           data: dataValues,
-          hoverOffset: 4,
+          hoverOffset: 8,
           backgroundColor: backgroundColors,
           borderWidth: 0
         }
@@ -71,23 +69,24 @@ const App = ({ wordData }) => {
   return (
     <div className="chartContainer">
       <Nav
-        className="nav-pills timeframeSelect w-100"
-        color="warning"
-        // onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
+        className="w-100 d-flex"
+        variant="pills"
+        fill={true}
       >
-        <Nav.Item onClick={(()=>{ setTimeframe(1) })} className="timeframe w-auto">
+        <Nav.Item onClick={(()=>{ setTimeframe(1) })} className="flex-fill">
           <Nav.Link active={timeframe === 1}>1 Month</Nav.Link>
         </Nav.Item>
-        <Nav.Item onClick={(()=>{ setTimeframe(2) })} className="timeframe w-auto">
+        <Nav.Item onClick={(()=>{ setTimeframe(2) })} className="flex-fill">
           <Nav.Link active={timeframe === 2}>6 Month</Nav.Link>
         </Nav.Item>
-        <Nav.Item onClick={(()=>{ setTimeframe(3) })} className="timeframe w-atuo">
+        <Nav.Item onClick={(()=>{ setTimeframe(3) })} className="flex-fill">
           <Nav.Link active={timeframe === 3}>All time</Nav.Link>
         </Nav.Item>
-        <Nav.Item onClick={signOut}>Sign Out</Nav.Item>
       </Nav>
       <div className="pieContainer">
-        <Pie data={createOptions(wordData)}/>
+        <div className="pie">
+          <Pie data={createOptions([shortData, mediumData, longData][timeframe-1])} options={{ plugins: { legend: { display: false } } }}/>
+        </div>
       </div>
       
     </div>

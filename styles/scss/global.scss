@@ -1,0 +1,185 @@
+$theme-colors: (
+  "primary": #145bea,
+  "secondary": #833bec,
+  "success": #1ce1ac,
+  "info": #ff7d50,
+  "warning": #ffbe0b,
+  "danger": #ff007f,
+  "light": #c0ccda,
+  "dark": #001738,
+);
+
+$main-theme: rgb(202, 27, 123);
+
+$nav-link-font-weight: bold;
+$nav-link-color: $main-theme;
+$nav-link-hover-color: $main-theme;
+
+$nav-tabs-border-color: $main-theme;
+$nav-tabs-link-hover-border-color: $main-theme $main-theme $main-theme;
+$nav-tabs-link-active-color: white;
+$nav-tabs-link-active-bg: $main-theme;
+$nav-tabs-link-active-border-color: $main-theme $main-theme $main-theme;
+
+$nav-pills-link-active-color: white;
+$nav-pills-link-active-bg: $main-theme;
+
+body {
+  background-color: #333;
+  width: 100vw;
+  height: 100vh;
+
+  .chartContainer {
+    width: 100vw;
+    height: 100vh;
+    background-color: #333;
+
+    .pieContainer {
+      display: flex;
+      justify-content: center;
+
+      margin-top: min(20vh, 45vw);
+
+      .pie {
+        width: min(70vh, 90vw);
+      }
+    }
+  }
+
+  .loading-body {
+    background-color: #f5d1df !important;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+
+    span {
+      position: relative;
+      color: #f29ccb;
+      animation: container-parent 6s infinite;
+
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: attr(data-text);
+        color: #ffffff;
+        opacity: 0;
+        animation: container-child 2s infinite;
+      }
+
+      @for $i from 1 through 7 {
+        &:nth-child(#{$i + 1})::after {
+          animation-delay: #{$i * 0.2}s;
+        }
+      }
+    }
+
+    @keyframes container-parent {
+      0%,
+      25%,
+      35%,
+      50%,
+      100% {
+        color: #e854a5;
+      }
+      60%,
+      80% {
+        color: #871252;
+      }
+    }
+
+    @keyframes container-child {
+      0% {
+        opacity: 1;
+      }
+      25%,
+      50%,
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .loading-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      box-shadow: #fcba03;
+      transform: scale(2);
+      animation: pulse 2s infinite;
+    }
+
+    button {
+      animation-name: btn-color-change;
+      animation-duration: 8s;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes btn-color-change {
+      0% {
+        background-color: #f29ccb;
+      }
+      5% {
+        background-color: #ed78b8;
+      }
+      10% {
+        background-color: #e854a5;
+      }
+      15% {
+        background-color: #e33092;
+      }
+      24% {
+        background-color: #cf1c7d;
+      }
+      32% {
+        background-color: #d177a8;
+      }
+      38% {
+        background-color: #c90872;
+      }
+      45% {
+        background-color: #a65d85;
+      }
+      54% {
+        background-color: #510b31;
+      }
+      65% {
+        background-color: #eb1e7e;
+      }
+      72% {
+        background-color: #f02e7e;
+      }
+      83% {
+        background-color: #c93271;
+      }
+      89% {
+        background-color: #bf2163;
+      }
+      95% {
+        background-color: #ad8093;
+      }
+      100% {
+        background-color: #eda6c4;
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+      }
+
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+      }
+
+      100% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+      }
+    }
+  }
+}
+
+@import "/node_modules/bootstrap/scss/bootstrap.scss";
