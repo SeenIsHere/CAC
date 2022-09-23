@@ -1,6 +1,6 @@
 
-import Chart from "./Components/Chart";
-import songsToWords from "./Methods/songsToWords";
+import Chart from "../Components/Chart";
+import songsToWords from "../Methods/songsToWords";
 
 const Results = ({ data }) => {
   if("error" in data) return <div>{data.error}</div>

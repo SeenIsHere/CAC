@@ -33,7 +33,7 @@ const validShades = [
   "#090105"
 ]
 
-const App = ({ shortData, mediumData, longData }) => {
+const Chart = ({ shortData, mediumData, longData }) => {
   const [timeframe, setTimeframe] = useState(2)
   
   const createOptions = (data) => {
@@ -93,4 +93,4 @@ const App = ({ shortData, mediumData, longData }) => {
   );
 };
 
-export default App;
+export default Chart;

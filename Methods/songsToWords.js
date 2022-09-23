@@ -1,7 +1,7 @@
-import getSong from "./getSong";
-import extractLyrics from "./extractLyrics";
+import { getSong } from "./getSong";
+import { extractLyrics } from "./extractLyrics";
 
-export default async (songs) => {
+const songsToWords = async (songs) => {
   var allLyrics = await Promise.all(
     songs.items.map(async (item, index) => {
       const primaryArtist = item.artists[0].name;
@@ -38,3 +38,5 @@ export default async (songs) => {
 
     return allWords
 };
+
+export default songsToWords;

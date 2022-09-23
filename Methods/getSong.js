@@ -1,4 +1,4 @@
-export default async ({ name, artist }) => {
+const getSong = async ({ name, artist }) => {
   var x = await new Promise((resolve, reject) => {
     fetch(
       `https://api.genius.com/search?q=${encodeURIComponent(
@@ -19,3 +19,5 @@ export default async ({ name, artist }) => {
 
   return x;
 };
+
+export { getSong };

@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import LoadingPage from "../Components/LoadingPage";
+import LoadingPage from "../../Components/LoadingPage";
 
 const Results = ({ access_token }) => {
   const router = useRouter();

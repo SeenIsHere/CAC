@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
 
-export default async (url) => {
+ const extractLyrics = async (url) => {
   var data = await fetch(url).then((res) => res.text());
 
   const $ = cheerio.load(data);
@@ -23,3 +23,5 @@ export default async (url) => {
   if (!lyrics) return null;
   return lyrics.trim().toLowerCase();
 };
+
+export { extractLyrics };
