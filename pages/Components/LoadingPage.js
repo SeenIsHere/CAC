@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Button } from "react-bootstrap"
 
-export default () => {
+ const LoadingPage = () => {
   return (
     <div className="loading-body">
       <div className="loading-container">
@@ -20,3 +20,5 @@ export default () => {
     </div>
   );
 };
+
+export default LoadingPage;

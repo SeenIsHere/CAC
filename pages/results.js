@@ -2,7 +2,7 @@
 import Chart from "./Components/Chart";
 import songsToWords from "./Methods/songsToWords";
 
-export default ({ data }) => {
+const Results = ({ data }) => {
   if("error" in data) return <div>{data.error}</div>
 
   return <Chart shortData={data.short} mediumData={data.medium} longData={data.long} />
@@ -51,3 +51,5 @@ export async function getServerSideProps({
     }, // will be passed to the page component as props
   };
 }
+
+export default Results;
