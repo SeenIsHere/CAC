@@ -37,7 +37,7 @@ export async function getServerSideProps({
       headers: {
         Authorization:
           "Basic " +
-          Buffer.from(
+          Buffer.from(   
             process.env.SPOTIFY_CLIENT_ID +
               ":" +
               process.env.SPOTIFY_CLIENT_SECRET
