@@ -32,9 +32,7 @@ export async function getServerSideProps({
 
     const postQuery = `code=${query.code}&redirect_uri=${process.env.SPOTIFY_REDIRECT_URI}&grant_type=authorization_code`;
 
-    console.log(postQuery)
-
-    const access = await fetch("https://accounts.spotify.com/api/token", { 
+    const access = await fetch("https://accounts.spotify.com/api/token", {
       method: "POST",
       headers: {
         Authorization:
