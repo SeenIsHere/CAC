@@ -34,7 +34,7 @@ export async function getServerSideProps({
 
     console.log(postQuery)
 
-    const access = await fetch("https://accounts.spotify.com/api/token", {
+    const access = await fetch("https://accounts.spotify.com/api/token", { 
       method: "POST",
       headers: {
         Authorization:
