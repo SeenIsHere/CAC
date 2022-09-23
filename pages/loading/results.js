@@ -11,7 +11,7 @@ const Results = ({ access_token }) => {
 
   if(typeof access_token == "object" && "error" in access_token) return <div>{access_token.error}</div>
 
-  return <LoadingPage />;
+  return (<LoadingPage />);
 };
 
 export default Results;
