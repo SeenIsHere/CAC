@@ -19,6 +19,10 @@ const nextConfig = {
         permanent: false,
         basePath: false
       },
+      {
+        source: '/privacy-policy',
+        destination: `/privacypolicy.html`
+      },
     ]
   },
   sassOptions: {
