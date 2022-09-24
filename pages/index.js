@@ -18,7 +18,7 @@ const App = () => {
         <Navbar collapseOnSelect expand="lg" bg="light">
           <Container fluid>
             <Navbar.Brand href="/" className="d-flex align-items-center">
-              <Image src={pic} width="30" height="30" />
+              <Image src={pic} width="30" height="30" alt=""/>
               Spie
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />

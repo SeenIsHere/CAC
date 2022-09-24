@@ -21,7 +21,7 @@ const nextConfig = {
       },
       {
         source: '/privacy-policy',
-        destination: `/privacypolicy.html`,
+        destination: `/public/privacypolicy.html`,
         permanent: false,
         basePath: false
       },
