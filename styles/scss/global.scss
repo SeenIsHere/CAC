@@ -1,3 +1,5 @@
+@import "~bootstrap/scss/mixins";
+
 $theme-colors: (
   "primary": #145bea,
   "secondary": #833bec,
@@ -5,7 +7,7 @@ $theme-colors: (
   "info": #ff7d50,
   "warning": #ffbe0b,
   "danger": #ff007f,
-  "light": #c0ccda,
+  "light": #ddd,
   "dark": #001738,
 );
 
@@ -179,6 +181,65 @@ body {
         box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
       }
     }
+  }
+
+  .home {
+    background-color: #343D46;
+    width: 100vw;
+    height: 100vh;
+
+    .navbar{
+      background:#333 !important;
+
+      .btn {
+        background: #e2288e;
+        color:#333;
+        width:100px;
+        margin-right:10px;
+        font-weight:bold;
+        border: none;
+  
+        &:hover {
+          background: darken(#e2288e, 10%);
+          color:#333;
+        }
+      }
+  
+      a {
+        color:#cf1c7d;
+        font-weight: normal;
+  
+        &:hover {
+          color: darken(#cf1c7d, 10%);
+        }
+      }
+    }
+
+    .centralStuff {
+      width: 100vw;
+      height: 80vh;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      p {
+        font-size: min(3vh, 4vw);
+      }
+
+      button {
+        width: min(20vh, 30vw);
+      }
+
+      .pie {
+        width: min(35vh, 45vw);
+      }
+
+    }
+
+    
+
   }
 }
 
