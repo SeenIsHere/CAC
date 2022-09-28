@@ -1,7 +1,9 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import { Nav } from "react-bootstrap"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useRouter } from "next/router";
+import Image from "next/image"
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -35,6 +37,12 @@ const validShades = [
 
 const Chart = ({ shortData, mediumData, longData }) => {
   const [timeframe, setTimeframe] = useState(2)
+  const router = useRouter()
+
+
+  useEffect(() => {
+    if(!shortData || !mediumData || !longData) router.replace("/")
+  })
   
   const createOptions = (data) => {
     const entries = Object.entries(data)
@@ -88,7 +96,12 @@ const Chart = ({ shortData, mediumData, longData }) => {
           <Pie data={createOptions([shortData, mediumData, longData][timeframe-1])} options={{ plugins: { legend: { display: false } } }}/>
         </div>
       </div>
-      
+      {/* <div className="footer">
+      <a href="https://www.buymeacoffee.com/spie">
+        <Image src={"https://img.buymeacoffee.com/button-api/?text=Buy me a Potato&emoji=&slug=spie&button_colour=cf1c7d&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00"} width="100" height="100" />
+      </a>
+  
+      </div> */}
     </div>
   );
 };

@@ -220,16 +220,27 @@ body {
       height: 80vh;
 
       display: flex;
-      flex-direction: column;
+      flex-direction: column; 
       justify-content: center;
       align-items: center;
 
       p {
+        color: black;
+        font-weight: bold;
         font-size: min(3vh, 4vw);
       }
 
       button {
         width: min(20vh, 30vw);
+
+        background-color:#cf1c7d;
+        border: none;
+
+        font-weight: bold;
+  
+        &:hover {
+          background-color: darken(#cf1c7d, 10%);
+        }
       }
 
       .pie {
