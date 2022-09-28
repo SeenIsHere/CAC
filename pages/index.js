@@ -1,10 +1,15 @@
 import Head from "next/head";
 import Image from "next/image";
+
 import { Button, Navbar, Nav, Container } from "react-bootstrap";
-import pic from "/public/logo.png";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
+
 import Router from 'next/router'
+
+import pic from "../Images/logo.png";
+import Buymeacoffee from "../Images/Buymeacoffee.svg"
+
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -32,7 +37,7 @@ const App = () => {
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link href="https://www.buymeacoffee.com/spie" className="py-0">
-                    <Image src={"https://img.buymeacoffee.com/button-api/?text=Buy me a Coffee&emoji=&slug=spie&button_colour=cf1c7d&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00"} width="169.2" height="36" />
+                    <Buymeacoffee width="169.2" height="36" />
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
@@ -66,3 +71,5 @@ const App = () => {
 };
 
 export default App;
+
+
