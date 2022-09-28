@@ -5,11 +5,16 @@ import { useRouter } from "next/router"
 import { useEffect } from "react"
 import LoadingPage from "../Components/LoadingPage";
 
+Array.prototype.isEmpty = function(){
+  return !this.length
+}
+
 const Results = ({ data, error }) => {
   const router = useRouter()
 
   useEffect(() => {
-    if(error) router.replace("/spotify")
+    if(error && error === "No Top Songs") router.replace({ pathname: "/error", query: { "type": 0 }}) 
+    else if(error) router.replace("/spotify")
   })
 
   if(error) return <LoadingPage />
@@ -46,6 +51,9 @@ export async function getServerSideProps({
   }).then((res) => res.json());
 
   if("error" in shortTermSongs || "error" in mediumTermSongs || "error" in longTermSongs) return { props: { data: null, error: "Access Token Expired" } }
+  
+  if(shortTermSongs.items.isEmpty() || mediumTermSongs.items.isEmpty() || longTermSongs.items.isEmpty()) return { props: { data: null, error: "No Top Songs" } }
+
 
   var shortTermWords = await songsToWords(shortTermSongs)
   var mediumTermWords = await songsToWords(mediumTermSongs)

@@ -8,6 +8,7 @@ import Image from "next/image"
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const validShades = [
+  "#ffffff",
   "#fef6fa",
   "#fbe4f1",
   "#f9d2e7",
@@ -33,7 +34,7 @@ const validShades = [
   "#2d061b",
   "#1b0410",
   "#090105"
-]
+].map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value)
 
 const Chart = ({ shortData, mediumData, longData }) => {
   const [timeframe, setTimeframe] = useState(2)
@@ -46,19 +47,19 @@ const Chart = ({ shortData, mediumData, longData }) => {
   
   const createOptions = (data) => {
     const entries = Object.entries(data)
-       .sort((a, b) => b[1] - a[1])
-      .slice(0, 100)
+      // .filter(x => common ? true : !CommonWords.includes(x[0]))
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 50)
 
 
     var labels = entries.map((x) => x[0]);
     var dataValues = entries.map((x) => x[1]);
 
-    
-    var backgroundColors = [];
 
-    labels.forEach((x, i) => {
-    backgroundColors.push(validShades[ 24-i % 24])
-    })
+    var backgroundColors = entries.map(x => {
+      const abc = "abcefghijklmnopqrstuvwxyz"
+      return validShades[abc.indexOf(x[0][0])]
+    });
 
     return {
       labels,
@@ -96,12 +97,6 @@ const Chart = ({ shortData, mediumData, longData }) => {
           <Pie data={createOptions([shortData, mediumData, longData][timeframe-1])} options={{ plugins: { legend: { display: false } } }}/>
         </div>
       </div>
-      {/* <div className="footer">
-      <a href="https://www.buymeacoffee.com/spie">
-        <Image src={"https://img.buymeacoffee.com/button-api/?text=Buy me a Potato&emoji=&slug=spie&button_colour=cf1c7d&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00"} width="100" height="100" />
-      </a>
-  
-      </div> */}
     </div>
   );
 };

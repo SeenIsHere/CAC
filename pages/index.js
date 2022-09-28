@@ -31,6 +31,11 @@ const App = () => {
                   <Nav.Link>About Us</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
+                  <Nav.Link href="https://www.buymeacoffee.com/spie" className="py-0">
+                    <Image src={"https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20Coffee&emoji=&slug=spie&button_colour=cf1c7d&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00"} width="169.2" height="36" />
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
                   <Button onClick={()=>{ Router.push('/spotify') }}>Log In</Button>
                 </Nav.Item>
               </Nav>

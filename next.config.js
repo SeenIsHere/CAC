@@ -9,12 +9,6 @@ const searchParams = new URLSearchParams({
 })
 
 const nextConfig = {
-  webpack5: true,
-  webpack: (config) => {
-    config.resolve.fallback = { fs: false };
-
-    return config;
-  },
   reactStrictMode: true,
   swcMinify: true,
   async redirects() {
@@ -36,6 +30,10 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+  images: {
+    dangerouslyAllowSVG: true,
+    domains: ["img.buymeacoffee.com"]
+  }
 }
 
 module.exports = nextConfig
