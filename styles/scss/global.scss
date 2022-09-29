@@ -11,21 +11,6 @@ $theme-colors: (
   "dark": #001738,
 );
 
-$main-theme: rgb(202, 27, 123);
-
-$nav-link-font-weight: bold;
-$nav-link-color: $main-theme;
-$nav-link-hover-color: $main-theme;
-
-$nav-tabs-border-color: $main-theme;
-$nav-tabs-link-hover-border-color: $main-theme $main-theme $main-theme;
-$nav-tabs-link-active-color: white;
-$nav-tabs-link-active-bg: $main-theme;
-$nav-tabs-link-active-border-color: $main-theme $main-theme $main-theme;
-
-$nav-pills-link-active-color: white;
-$nav-pills-link-active-bg: $main-theme;
-
 body {
   background-color: #333;
   width: 100vw;
@@ -35,6 +20,33 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: #333;
+
+    .nav-item {
+      .active.timeframe-nav {
+        background-color: #cf1c7d;
+        color: black;
+      }
+      .timeframe-nav {
+        color: #cf1c7d;
+      }
+
+      .active.commonwords-nav {
+        background-color: #89CFF0;
+        color: black;
+      }
+      .commonwords-nav {
+        color: #89CFF0;
+      }
+
+      .active.filterprofanity-nav {
+        background-color: red;
+        color: black;
+      }
+      .filterprofanity-nav {
+        color: red;
+      }
+    }
+
 
     .pieContainer {
       display: flex;
@@ -194,8 +206,7 @@ body {
       .btn {
         background: #e2288e;
         color:#333;
-        width: 169.2px;
-        height: 36px;
+        width:100px;
         margin-right:10px;
         font-weight:bold;
         border: none;
@@ -253,6 +264,58 @@ body {
     
 
   }
+
+  .page-not-found-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-image: url("https://c.tenor.com/8uAPPH9GpOUAAAAC/white-monkey-confused.gif");
+    background-size: cover;
+
+    .Main {
+      font-family: "Copper Plate",  Monospace, Fantasy;
+      font-size: 100px;
+      color:#cf1c7d;
+      font-weight:900;
+    }
+    
+    .Sub {
+      font-family: "Copper Plate", Monospace , Fantasy;
+      color:#cf1c7d;
+      width:250px;
+      font-weight:900;
+      font-size:30px;
+    }
+
+  }
+
+  .error-page-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #343D46;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .Main {
+      font-family: "Copper Plate",  Monospace, Fantasy;
+      font-size: 100px;
+      color:#cf1c7d;
+      font-weight:900;
+    }
+    
+    .Sub {
+      font-family: "Copper Plate", Monospace , Fantasy;
+      color:#cf1c7d;
+      width: 40vw;
+      font-weight:900;
+      font-size:30px;
+    }
+  }
+  
+
 }
 
 @import "/node_modules/bootstrap/scss/bootstrap.scss";

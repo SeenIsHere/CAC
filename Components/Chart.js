@@ -3,9 +3,15 @@ import { Pie } from "react-chartjs-2";
 import { Nav } from "react-bootstrap"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router";
+import Filter from "bad-words"
+
 import Image from "next/image"
+import CommonWords from "/commonWords"
 
 ChartJS.register(ArcElement, Tooltip, Legend);
+const filter = new Filter()
+console.log(filter.isProfane("Potato"))
+
 
 const validShades = [
   "#ffffff",
@@ -37,17 +43,20 @@ const validShades = [
 ].map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value)
 
 const Chart = ({ shortData, mediumData, longData }) => {
-  const [timeframe, setTimeframe] = useState(2)
+  const [timeframe, setTimeframe] = useState(2);
+  const [common, setCommon] = useState(true);
+  const [profanity, setProfanity] = useState(false);
   const router = useRouter()
 
 
   useEffect(() => {
-    if(!shortData || !mediumData || !longData) router.replace("/")
+    if (!shortData || !mediumData || !longData) router.replace("/")
   })
-  
+
   const createOptions = (data) => {
     const entries = Object.entries(data)
-      // .filter(x => common ? true : !CommonWords.includes(x[0]))
+      .filter(x => common ? true : !CommonWords.includes(x[0]))
+      .filter(x => profanity || !filter.isProfane(x))
       .sort((a, b) => b[1] - a[1])
       .slice(0, 50)
 
@@ -60,6 +69,7 @@ const Chart = ({ shortData, mediumData, longData }) => {
       const abc = "abcefghijklmnopqrstuvwxyz"
       return validShades[abc.indexOf(x[0][0])]
     });
+
 
     return {
       labels,
@@ -82,19 +92,31 @@ const Chart = ({ shortData, mediumData, longData }) => {
         variant="pills"
         fill={true}
       >
-        <Nav.Item onClick={(()=>{ setTimeframe(1) })} className="flex-fill">
-          <Nav.Link active={timeframe === 1}>1 Month</Nav.Link>
+        <Nav.Item onClick={(() => { setTimeframe(1) })} className="flex-fill">
+          <Nav.Link className="timeframe-nav" active={timeframe === 1}>1 Month</Nav.Link>
         </Nav.Item>
-        <Nav.Item onClick={(()=>{ setTimeframe(2) })} className="flex-fill">
-          <Nav.Link active={timeframe === 2}>6 Month</Nav.Link>
+        <Nav.Item onClick={(() => { setTimeframe(2) })} className="flex-fill">
+          <Nav.Link className="timeframe-nav" active={timeframe === 2}>6 Month</Nav.Link>
         </Nav.Item>
-        <Nav.Item onClick={(()=>{ setTimeframe(3) })} className="flex-fill">
-          <Nav.Link active={timeframe === 3}>All time</Nav.Link>
+        <Nav.Item onClick={(() => { setTimeframe(3) })} className="flex-fill">
+          <Nav.Link className="timeframe-nav" active={timeframe === 3}>All time</Nav.Link>
+        </Nav.Item>
+        <Nav.Item onClick={(() => { setCommon(true) })} className="flex-fill">
+          <Nav.Link className="commonwords-nav" active={common}>All Words</Nav.Link>
+        </Nav.Item>
+        <Nav.Item onClick={(() => { setCommon(false) })} className="flex-fill">
+          <Nav.Link className="commonwords-nav" active={!common}>Unique Words</Nav.Link>
+        </Nav.Item>
+        <Nav.Item onClick={(() => { setProfanity(true); console.log("show") })} className="flex-fill">
+          <Nav.Link className="filterprofanity-nav" active={profanity}>Show Profanity</Nav.Link>
+        </Nav.Item>
+        <Nav.Item onClick={(() => { setProfanity(false); console.log("hide") })} className="flex-fill">
+          <Nav.Link className="filterprofanity-nav" active={!profanity}>Hide Profanity</Nav.Link>
         </Nav.Item>
       </Nav>
       <div className="pieContainer">
         <div className="pie">
-          <Pie data={createOptions([shortData, mediumData, longData][timeframe-1])} options={{ plugins: { legend: { display: false } } }}/>
+          <Pie data={createOptions([shortData, mediumData, longData][timeframe - 1])} options={{ plugins: { legend: { display: false } } }} />
         </div>
       </div>
     </div>
