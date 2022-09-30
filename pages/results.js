@@ -1,9 +1,13 @@
 
-import Chart from "../Components/Chart";
 import songsToWords from "../Methods/songsToWords";
 import { useRouter } from "next/router"
 import { useEffect } from "react"
 import LoadingPage from "../Components/LoadingPage";
+import ResultSkeleton from "../Components/ResultSkeleton";
+
+import CommonWords from "/commonWords"
+import Filter from "bad-words";
+const filter = new Filter();
 
 Array.prototype.isEmpty = function(){
   return !this.length
@@ -18,8 +22,8 @@ const Results = ({ data, error }) => {
   })
 
   if(error) return <LoadingPage />
-  return <Chart shortData={data.short} mediumData={data.medium} longData={data.long} />
-  // return <p>{JSON.stringify(data)}</p>
+  return <ResultSkeleton shortData={data.short} mediumData={data.medium} longData={data.long} />
+  // return <p>{JSON.stringify(data.short.allFilters)}</p>
 }
 
 export async function getServerSideProps({
@@ -54,21 +58,30 @@ export async function getServerSideProps({
   
   if(shortTermSongs.items.isEmpty() || mediumTermSongs.items.isEmpty() || longTermSongs.items.isEmpty()) return { props: { data: null, error: "No Top Songs" } }
 
+  var data = { 
+    short: {}, 
+    medium: {}, 
+    long: {}, 
+    error: null 
+  }
 
-  var shortTermWords = await songsToWords(shortTermSongs)
-  var mediumTermWords = await songsToWords(mediumTermSongs)
-  var longTermWords = await songsToWords(longTermSongs)
+  data.short.all  = Object.entries(await songsToWords(shortTermSongs)).slice(0, 200)
+  data.medium.all = Object.entries(await songsToWords(mediumTermSongs)).slice(0, 200)
+  data.long.all   = Object.entries(await songsToWords(longTermSongs)).slice(0, 200)
 
-  return {
-    props: {
-      data: {
-        short: shortTermWords,
-        medium: mediumTermWords,
-        long: longTermWords,
-      },
-      error: null
-    }, // will be passed to the page component as props
-  };
+  data.short.filterProfanity  = data.short.all  .filter((entry) => !filter.isProfane(entry[0]))
+  data.medium.filterProfanity = data.medium.all .filter((entry) => !filter.isProfane(entry[0]))
+  data.long.filterProfanity   = data.long.all   .filter((entry) => !filter.isProfane(entry[0]))
+
+  data.short.filterCommonWords  = data.short.all .filter((entry) => !CommonWords.includes(entry[0]))
+  data.medium.filterCommonWords = data.medium.all.filter((entry) => !CommonWords.includes(entry[0]))
+  data.long.filterCommonWords   = data.long.all  .filter((entry) => !CommonWords.includes(entry[0]))
+
+  data.short.allFilters  = data.short.all .filter((entry) => !(CommonWords.includes(entry[0]) || filter.isProfane(entry[0]) ))
+  data.medium.allFilters = data.medium.all.filter((entry) => !(CommonWords.includes(entry[0]) || filter.isProfane(entry[0]) ))
+  data.long.allFilters   = data.long.all  .filter((entry) => !(CommonWords.includes(entry[0]) || filter.isProfane(entry[0]) ))
+
+  return { props: { data } }
 }
 
 export default Results;
