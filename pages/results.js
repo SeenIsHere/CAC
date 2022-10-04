@@ -100,7 +100,7 @@ export async function getServerSideProps({
           albumCoverURL: song.album.images[0].url,
           songURI: song.uri
       }})
-      .filter(x => !!x)
+//       .filter(x => !!x)
   );
   // var data = {
   //   short: {},
