@@ -78,8 +78,9 @@ export async function getServerSideProps({
       .slice(0, 12)
       .map(async (song) => {
         var lyrics = await songsToWords(song)
+        if(!lyrics) return null;
         var words = {};
-
+      
         lyrics.split(" ").forEach((word) => {
               if (word.trim() == "") return;
               if (word.trim() in words) words[word.trim()] += 1;
@@ -95,6 +96,7 @@ export async function getServerSideProps({
           albumCoverURL: song.album.images[0].url,
           songURI: song.uri
       }})
+      .filter(x => !!x)
   );
   // var data = {
   //   short: {},
