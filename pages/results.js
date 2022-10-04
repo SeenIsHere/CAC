@@ -89,6 +89,8 @@ export async function getServerSideProps({
 
         words = Object.entries(words)
 
+        console.log(song, words)
+        
         return {
           words,
           name: song.name,
