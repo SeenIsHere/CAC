@@ -28,7 +28,7 @@ const Results = ({ data, error }) => {
 
   if (error) return <LoadingPage />;
 
-  console.log(songData)
+  console.log("Song Data", songData)
 
   if(!songData) return <TopSongList focusSong={songData} setFocusSong={setSongData} topSongs={data}/>
 
@@ -91,7 +91,7 @@ export async function getServerSideProps({
 
         words = Object.entries(words)
 
-        console.log(song, words)
+        console.log("Inside Promise", song, words)
         
         return {
           words,
@@ -124,7 +124,6 @@ export async function getServerSideProps({
   // data.short.allFilters  = data.short.all .filter((entry) => !(CommonWords.includes(entry[0]) || filter.isProfane(entry[0]) ))
   // data.medium.allFilters = data.medium.all.filter((entry) => !(CommonWords.includes(entry[0]) || filter.isProfane(entry[0]) ))
   // data.long.allFilters   = data.long.all  .filter((entry) => !(CommonWords.includes(entry[0]) || filter.isProfane(entry[0]) ))
-
 
   return { props: { data: x } };
 }
