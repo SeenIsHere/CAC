@@ -63,12 +63,14 @@ const createOptions = (data) => {
 
 const LyricsPieChart = ({ data, filterProfanity, filterCommonWords,  }) => {
 
-    if(filterProfanity && filterCommonWords)  return <Pie data={createOptions(data.allFilters, true)} options={{ plugins: { legend: { display: false } } }} />
-    if(filterProfanity && !filterCommonWords) return <Pie data={createOptions(data.filterProfanity)} options={{ plugins: { legend: { display: false } } }} />
-    if(!filterProfanity && filterCommonWords) return <Pie data={createOptions(data.filterCommonWords)} options={{ plugins: { legend: { display: false } } }} />
-
-    return <Pie data={createOptions(data.all)} options={{ plugins: { legend: { display: false } } }} />
+    // if(filterProfanity && filterCommonWords)  return <Pie data={createOptions(data.allFilters, true)} options={{ plugins: { legend: { display: false } } }} />
+    // if(filterProfanity && !filterCommonWords) return <Pie data={createOptions(data.filterProfanity)} options={{ plugins: { legend: { display: false } } }} />
+    // if(!filterProfanity && filterCommonWords) return <Pie data={createOptions(data.filterCommonWords)} options={{ plugins: { legend: { display: false } } }} />
+    return <Pie data={createOptions(data)} options={{ plugins: { legend: { display: false } } }} />
 
 };
 
 export default LyricsPieChart;
+
+
+

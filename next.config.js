@@ -37,7 +37,10 @@ const nextConfig = {
     });
 
     return config;
-  }
+  },
+  images: {
+    domains: ['i.scdn.co'],
+  },
 }
 
 module.exports = nextConfig
