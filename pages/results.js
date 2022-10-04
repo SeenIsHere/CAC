@@ -19,6 +19,8 @@ const Results = ({ data, error }) => {
   const [songData, setSongData] = useState(null)
 
   useEffect(() => {
+    console.log(data)
+    
     if (error && error === "No Top Songs")
       router.replace({ pathname: "/error", query: { type: 0 } });
     else if (error) router.replace("/spotify");
