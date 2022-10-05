@@ -19,6 +19,8 @@ const Results = ({ data, error }) => {
   const [songData, setSongData] = useState(null)
 
   useEffect(() => {
+    console.log(data)
+    
     if (error && error === "No Top Songs")
       router.replace({ pathname: "/error", query: { type: 0 } });
     else if (error) router.replace("/spotify");
@@ -26,7 +28,7 @@ const Results = ({ data, error }) => {
 
   if (error) return <LoadingPage />;
 
-  console.log(songData)
+  console.log("Song Data", songData)
 
   if(!songData) return <TopSongList focusSong={songData} setFocusSong={setSongData} topSongs={data}/>
 
@@ -78,8 +80,9 @@ export async function getServerSideProps({
       .slice(0, 12)
       .map(async (song) => {
         var lyrics = await songsToWords(song)
+        if(!lyrics) return null;
         var words = {};
-
+      
         lyrics.split(" ").forEach((word) => {
               if (word.trim() == "") return;
               if (word.trim() in words) words[word.trim()] += 1;
@@ -88,6 +91,8 @@ export async function getServerSideProps({
 
         words = Object.entries(words)
 
+        console.log("Inside Promise", song, words)
+        
         return {
           words,
           name: song.name,
@@ -95,7 +100,10 @@ export async function getServerSideProps({
           albumCoverURL: song.album.images[0].url,
           songURI: song.uri
       }})
-  );
+//       
+  )
+  
+  x = x.filter(x => x !== null)
   // var data = {
   //   short: {},
   //   medium: {},
@@ -118,7 +126,6 @@ export async function getServerSideProps({
   // data.short.allFilters  = data.short.all .filter((entry) => !(CommonWords.includes(entry[0]) || filter.isProfane(entry[0]) ))
   // data.medium.allFilters = data.medium.all.filter((entry) => !(CommonWords.includes(entry[0]) || filter.isProfane(entry[0]) ))
   // data.long.allFilters   = data.long.all  .filter((entry) => !(CommonWords.includes(entry[0]) || filter.isProfane(entry[0]) ))
-
 
   return { props: { data: x } };
 }

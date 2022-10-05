@@ -15,18 +15,7 @@ const Results = ({ access_token, error }) => {
 
 export default Results;
 
-export async function getServerSideProps({
-    params,
-    req,
-    res,
-    query,
-    preview,
-    previewData,
-    resolvedUrl,
-    locale,
-    locales,
-    defaultLocale,
-  }){
+export async function getServerSideProps({ query }){
     if(!("code" in query)) return { props: { access_token: null, error: "No Code Provided" } }
 
     if("error" in query) return { props: { access_token: null, error: "User Cancel" } }
