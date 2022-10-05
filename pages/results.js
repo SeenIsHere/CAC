@@ -33,6 +33,8 @@ export async function getServerSideProps({ query }) {
     { headers: { Authorization: "Bearer " + query.access_token } }
   ).then((res) => res.json());
 
+  console.log(mediumTermSongs)
+  
   if ("error" in mediumTermSongs) return { redirect: { destination: '/error?code=' + song.error.message }, }
   if (mediumTermSongs.items.isEmpty()) return { redirect: { destination: '/error?code=No Top Songs' }, }
 
