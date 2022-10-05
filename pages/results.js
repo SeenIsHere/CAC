@@ -31,9 +31,10 @@ export async function getServerSideProps({ query }) {
   var mediumTermSongs = await fetch(
     "https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=medium_term",
     { headers: { Authorization: "Bearer " + query.access_token } }
-  ).then((res) => res.json());
+  )
+  .then(res => { console.log(res, "\n\n\n", res.text()) }) 
+  .then((res) => res.json());
 
-  console.log(mediumTermSongs)
   
   if ("error" in mediumTermSongs) return { redirect: { destination: '/error?code=' + song.error.message }, }
   if (mediumTermSongs.items.isEmpty()) return { redirect: { destination: '/error?code=No Top Songs' }, }
