@@ -92,7 +92,7 @@ export async function getServerSideProps({
         words = Object.entries(words)
 
         console.log("Inside Promise", song, words)
-        
+         
         return {
           words,
           name: song.name,
@@ -103,7 +103,7 @@ export async function getServerSideProps({
 //       
   )
   
-  x = x.filter(x => x !== null)
+  x = x.filter(lyrics => lyrics !== null)
   // var data = {
   //   short: {},
   //   medium: {},

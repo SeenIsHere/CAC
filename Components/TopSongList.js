@@ -6,7 +6,7 @@ import LoadingPage from "./LoadingPage";
 
 
 const TopSongList = ({ topSongs, focusSong, setFocusSong }) => {
-
+  console.log("TOPSONGLIST LOG", topSongs)
   const router = useRouter()
   const [loading, setLoading] = useState(false)
 
