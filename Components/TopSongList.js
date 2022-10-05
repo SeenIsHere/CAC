@@ -1,17 +1,17 @@
 import Image from "next/image";
 import { Card, Button, Form } from "react-bootstrap";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import { useState } from "react";
 import LoadingPage from "./LoadingPage";
 
 
-const TopSongList = ({ topSongs, focusSong, setFocusSong }) => {
-  console.log("TOPSONGLIST LOG", topSongs)
+const TopSongList = ({ topSongs }) => {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
 
   const handleChartRedirect = (song) => {
-    setFocusSong(song)
+    setLoading(true)
+    router.push({ query: { access_token: router.query.access_token }, pathname: "/card/" + song.songID })
   }
 
   if(loading) return <LoadingPage />

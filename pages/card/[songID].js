@@ -1,19 +1,27 @@
 import { Nav } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 
-import LyricsPieChart from "./LyricsPieChart";
+import LyricsPieChart from "../../Components/LyricsPieChart";
+
+import songsToWords from "../../Methods/songsToWords";
+
+import CommonWords from "/commonWords";
+import Filter from "bad-words";
+const filter = new Filter();
 
 
-
-const ResultSkeleton = ({ data, focusSong, setFocusSong  }) => {
+const Card = ({ data }) => {
   const [filterCommon, setFilterCommon] = useState(false);
   const [filterProfanity, setFilterProfanity] = useState(true);
   const router = useRouter();
+  // const { songID } = router.query;
 
   useEffect(() => {
-    if (!data) router.replace("/");
+    // if (!data) router.replace("/");
   });
+
+
 
   return (
     <div className="chartContainer">
@@ -54,7 +62,7 @@ const ResultSkeleton = ({ data, focusSong, setFocusSong  }) => {
             Hide Profanity
           </Nav.Link>
         </Nav.Item>
-        <Nav.Item onClick={()=>{ setFocusSong(null) }} >
+        <Nav.Item onClick={()=>{ router.back() }} >
           <Nav.Link>
             Return
           </Nav.Link>
@@ -74,4 +82,53 @@ const ResultSkeleton = ({ data, focusSong, setFocusSong  }) => {
   );
 };
 
-export default ResultSkeleton;
+export default Card;
+
+export async function getServerSideProps({
+    params,
+    req,
+    res,
+    query,
+    preview,
+    previewData,
+    resolvedUrl,
+    locale,
+    locales,
+    defaultLocale,
+  }){
+
+    if (!("access_token" in query)) return { redirect: { destination: '/error?code=No Access Token' }, }
+
+    var song = await fetch(
+      "https://api.spotify.com/v1/tracks/" + query.songID,
+      { headers: { Authorization: "Bearer " + query.access_token } }
+    ).then((res) => res.json());
+
+    if ("error" in song) return { redirect: { destination: '/error?code=' + song.error.message }, }
+   
+    var lyrics = await songsToWords(song)
+    if(!lyrics) return null;
+    var words = {};
+  
+    lyrics.split(" ").forEach((word) => {
+          if (word.trim() == "") return;
+          if (word.trim() in words) words[word.trim()] += 1;
+          else words[word.trim()] = 1;
+        });
+
+    words = Object.entries(words)
+
+    var data = {}
+
+    data.all = words
+
+    data.filterProfanity  = words  .filter((entry) => !filter.isProfane(entry[0]))
+
+    data.filterCommonWords  = words .filter((entry) => !CommonWords.includes(entry[0]))
+
+    data.allFilters  = words .filter((entry) => !(CommonWords.includes(entry[0]) || filter.isProfane(entry[0]) ))
+
+
+
+    return { props: { data } }
+}

@@ -15,14 +15,25 @@ const Results = ({ access_token, error }) => {
 
 export default Results;
 
-export async function getServerSideProps({ query }){
+export async function getServerSideProps({
+    params,
+    req,
+    res,
+    query,
+    preview,
+    previewData,
+    resolvedUrl,
+    locale,
+    locales,
+    defaultLocale,
+  }){
     if(!("code" in query)) return { props: { access_token: null, error: "No Code Provided" } }
 
     if("error" in query) return { props: { access_token: null, error: "User Cancel" } }
 
     const postQuery = `code=${query.code}&redirect_uri=${process.env.SPOTIFY_REDIRECT_URI}&grant_type=authorization_code`;
 
-    const access = await fetch("https://accounts.spotify.com/api/token", {
+    const { access_token } = await fetch("https://accounts.spotify.com/api/token", {
       method: "POST",
       headers: {
         Authorization:
@@ -38,8 +49,10 @@ export async function getServerSideProps({ query }){
       body: postQuery,
     }).then((res) => res.json());
 
+    console.log(access_token)
+
     return { props: { 
-      access_token: access.access_token,  
+      access_token,
       error: null
     } }
 }
