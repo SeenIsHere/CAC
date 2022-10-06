@@ -11,7 +11,7 @@ const AboutUs = () => {
         <div className="abtUs">
           <h1> About Us </h1>
           <p>
-            We're a group of sophomore, computer science majors from ACIT in New
+            We&#39;re a group of sophomore, computer science majors from ACIT in New
             Jersey hoping to express a little bit of creativity and development
             with Spie.
           </p>
@@ -38,7 +38,7 @@ const AboutUs = () => {
             <Image src={PAUL} className="teamPFP" />
             <div className="teamDesc">
                 <h5> Taylor Houghtaling </h5>
-                <p> 5'10 tall hunk of a man. Inteligent, strong, sexy, amazing. </p>
+                <p> 5&#39;10 tall hunk of a man. Inteligent, strong, sexy, amazing. </p>
             </div>
             </div>
             <div className="teamProfile">
