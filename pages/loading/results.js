@@ -6,8 +6,7 @@ const Results = ({ access_token }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if(error) router.replace("/")
-    else router.replace({ pathname: "/results", query: { access_token } });
+    router.replace({ pathname: "/results", query: { access_token } });
   });
 
   return (<LoadingPage />);
@@ -49,12 +48,10 @@ export async function getServerSideProps({
       body: postQuery,
     }).then((res) => res.json());
 
-    if ("error" in tokenAuth) return { redirect: { destination: '/error?code=' + tokenAuth.error.message }, }
+    if ("error" in tokenAuth) return { redirect: { destination: '/error?code=' + tokenAuth.error }, }
 
     const { access_token } = tokenAuth;
+    console.log(tokenAuth)
 
-    return { props: { 
-      access_token,
-      error: null
-    } }
+    return { props: { access_token } }
 }

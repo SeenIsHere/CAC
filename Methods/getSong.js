@@ -1,6 +1,4 @@
 const getSong = async ({ name, artist }) => {
-  name = "asdasdasdacvswrg3hqgewqrgh"
-  artist = "onadsofnsojdvnokqweng9uwrjgpkasdmnfo"
   var x = await new Promise((resolve, reject) => {
     fetch(
       `https://api.genius.com/search?q=${encodeURIComponent(

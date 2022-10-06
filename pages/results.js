@@ -32,7 +32,10 @@ export async function getServerSideProps({ query }) {
     "https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=medium_term",
     { headers: { Authorization: "Bearer " + query.access_token } }
   )
-  .then(res => { console.log(res, "\n\n\n", res.text()) }) 
+  // .then(res => { 
+  //   console.log(res, "\n\n\n", res.text())
+  //   return res
+  // }) 
   .then((res) => res.json());
 
   if ("error" in topTracks) return { redirect: { destination: '/error?code=' + topTracks.error.message }, }
