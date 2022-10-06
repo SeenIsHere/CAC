@@ -16,6 +16,33 @@ body {
   width: 100vw;
   height: 100vh;
 
+  .home-nav-bar {
+      background: #333 !important;
+
+      .btn {
+        background: #e2288e;
+        color: #333;
+        width: 100px;
+        margin-right: 10px;
+        font-weight: bold;
+        border: none;
+
+        &:hover {
+          background: darken(#e2288e, 10%);
+          color: #333;
+        }
+      }
+
+      a {
+        color: #cf1c7d;
+        font-weight: normal;
+
+        &:hover {
+          color: darken(#cf1c7d, 10%);
+        }
+      }
+  }
+
   .TopSongListContainer {
     background-color: #333;
 
@@ -28,13 +55,10 @@ body {
       margin: min(1vw, 1vh) 0;
 
       & > div.card {
-
         & > img.card-img-top {
           cursor: pointer;
         }
-
       }
-
     }
 
     & > .searchContainer {
@@ -42,13 +66,11 @@ body {
       display: flex;
       justify-content: center;
 
-      & > input[type=text] {
+      & > input[type="text"] {
         width: 50vw;
         margin: min(1vw, 1vh) 0;
       }
     }
-
-
   }
 
   .chartContainer {
@@ -66,11 +88,11 @@ body {
       }
 
       .active.commonwords-nav {
-        background-color: #89CFF0;
+        background-color: #89cff0;
         color: black;
       }
       .commonwords-nav {
-        color: #89CFF0;
+        color: #89cff0;
       }
 
       .active.filterprofanity-nav {
@@ -81,7 +103,6 @@ body {
         color: red;
       }
     }
-
 
     .pieContainer {
       display: flex;
@@ -231,43 +252,18 @@ body {
   }
 
   .home {
-    background-color: #343D46;
+    background-color: #343d46;
     width: 100vw;
     height: 100vh;
 
-    .navbar{
-      background:#333 !important;
 
-      .btn {
-        background: #e2288e;
-        color:#333;
-        width:100px;
-        margin-right:10px;
-        font-weight:bold;
-        border: none;
-  
-        &:hover {
-          background: darken(#e2288e, 10%);
-          color:#333;
-        }
-      }
-  
-      a {
-        color:#cf1c7d;
-        font-weight: normal;
-  
-        &:hover {
-          color: darken(#cf1c7d, 10%);
-        }
-      }
-    }
 
     .centralStuff {
       width: 100vw;
       height: 80vh;
 
       display: flex;
-      flex-direction: column; 
+      flex-direction: column;
       justify-content: center;
       align-items: center;
 
@@ -280,11 +276,11 @@ body {
       button {
         width: min(20vh, 30vw);
 
-        background-color:#cf1c7d;
+        background-color: #cf1c7d;
         border: none;
 
         font-weight: bold;
-  
+
         &:hover {
           background-color: darken(#cf1c7d, 10%);
         }
@@ -293,11 +289,7 @@ body {
       .pie {
         width: min(35vh, 45vw);
       }
-
     }
-
-    
-
   }
 
   .page-not-found-container {
@@ -310,47 +302,129 @@ body {
     background-size: cover;
 
     .Main {
-      font-family: "Copper Plate",  Monospace, Fantasy;
+      font-family: "Copper Plate", Monospace, Fantasy;
       font-size: 100px;
-      color:#cf1c7d;
-      font-weight:900;
-    }
-    
-    .Sub {
-      font-family: "Copper Plate", Monospace , Fantasy;
-      color:#cf1c7d;
-      width:250px;
-      font-weight:900;
-      font-size:30px;
+      color: #cf1c7d;
+      font-weight: 900;
     }
 
+    .Sub {
+      font-family: "Copper Plate", Monospace, Fantasy;
+      color: #cf1c7d;
+      width: 250px;
+      font-weight: 900;
+      font-size: 30px;
+    }
   }
 
   .error-page-container {
     width: 100vw;
     height: 100vh;
-    background-color: #343D46;
+    background-color: #343d46;
     display: flex;
     align-items: center;
     flex-direction: column;
 
     .Main {
-      font-family: "Copper Plate",  Monospace, Fantasy;
+      font-family: "Copper Plate", Monospace, Fantasy;
       font-size: 100px;
-      color:#cf1c7d;
-      font-weight:900;
+      color: #cf1c7d;
+      font-weight: 900;
     }
-    
+
     .Sub {
-      font-family: "Copper Plate", Monospace , Fantasy;
-      color:#cf1c7d;
+      font-family: "Copper Plate", Monospace, Fantasy;
+      color: #cf1c7d;
       width: 40vw;
-      font-weight:900;
-      font-size:30px;
+      font-weight: 900;
+      font-size: 30px;
     }
   }
-  
 
+  .amongUsContainer {
+
+    .introDiv {
+      min-height: 35vh;
+      // background-image: url("/public/logo.png");
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-color: #343d46;
+      padding: 5vw;
+    }
+
+    .abtUs {
+      width: min(50vw, 90vh);
+      margin: auto;
+      text-align: center;
+      font-weight:800;
+      padding: 30px;
+      font-family: "Copper Plate", Monospace, Fantasy;
+      color: lightgoldenrodyellow;
+    }
+
+    .spieDiv {
+      min-height: 25vh;
+      background-color: #cf1c7d;
+      padding: min(7vh, 4vw);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .abtSpie {
+      margin: auto;
+      text-align: center;
+      padding: 30px;
+      font-family: "Copper Plate", Monospace, Fantasy;
+      color: lightgoldenrodyellow;
+    }
+
+    .teamDiv {
+      padding-top: min(4vh, 5vw);
+      text-align: center;
+      min-height: 35vh;
+      background-color: #343d46;
+      font-family: "Copper Plate", Monospace, Fantasy;
+      color: lightgoldenrodyellow;
+
+
+      & > .teamProfiles {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+  
+        & > .teamProfile {
+          margin: 5vh;
+          display: inline-block;
+          width: min(80vw, 50vh);
+          border: 5px solid #cf1c7d;
+          box-shadow: 21px 18px 20px 2px rgba(207, 28, 125, 0.82);
+    
+          & > span {
+            width: min(80vw, 50vh) !important;
+            aspect-ratio: 1/1 !important;
+            border: 2px;
+          }
+      
+          & > .teamDesc {
+            margin-top: 5px;
+            padding: 15px;
+          }
+    
+        }
+  
+      }
+
+    }
+
+
+
+
+
+  }
 }
 
 @import "/node_modules/bootstrap/scss/bootstrap.scss";

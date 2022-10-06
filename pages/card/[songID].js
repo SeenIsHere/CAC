@@ -107,7 +107,7 @@ export async function getServerSideProps({
     if ("error" in song) return { redirect: { destination: '/error?code=' + song.error.message }, }
    
     var lyrics = await songsToWords(song)
-    if(!lyrics) return null;
+    if(!lyrics) return { redirect: { destination: '/error?code=Could Not Retrieve Lyrics For This Song'}, };
     var words = {};
   
     lyrics.split(" ").forEach((word) => {

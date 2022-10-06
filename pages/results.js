@@ -28,15 +28,15 @@ export async function getServerSideProps({ query }) {
   if (!("access_token" in query))
   return { redirect: { destination: '/error?code=No Access Token' }, }
 
-  var mediumTermSongs = await fetch(
+  var topTracks = await fetch(
     "https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=medium_term",
     { headers: { Authorization: "Bearer " + query.access_token } }
   ).then((res) => res.json());
 
-  if ("error" in mediumTermSongs) return { redirect: { destination: '/error?code=' + song.error.message }, }
-  if (mediumTermSongs.items.isEmpty()) return { redirect: { destination: '/error?code=No Top Songs' }, }
+  if ("error" in topTracks) return { redirect: { destination: '/error?code=' + topTracks.error.message }, }
+  if (topTracks.items.isEmpty()) return { redirect: { destination: '/error?code=No Top Songs' }, }
 
-    var songs = mediumTermSongs.items
+    var songs = topTracks.items
       .slice(0, 12)
       .map(song => ({
           name: song.name,
@@ -45,6 +45,7 @@ export async function getServerSideProps({ query }) {
           songURI: song.uri,
           songID: song.id
       })) 
+
 
   return { props: { topSongs: songs } };
 }

@@ -6,6 +6,8 @@ const songsToWords = async (song) => {
 
   var genius = await getSong({ name: song.name, artist: primaryArtist });
 
+  if(genius.response.hits.length === 0) return null
+
   const filteredSongs = genius.response.hits.filter(
     (hit) =>
       hit.result.primary_artist.name.toLowerCase() ===

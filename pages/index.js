@@ -9,6 +9,7 @@ import Router from 'next/router'
 
 import pic from "../Images/logo.png";
 import Buymeacoffee from "../Images/Buymeacoffee.svg"
+import HomeNavBar from "../Components/HomeNavBar"
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -20,33 +21,7 @@ const App = () => {
         <title>Spie</title>
       </Head>
       <div className="home">
-        <Navbar collapseOnSelect expand="lg" bg="light">
-          <Container fluid>
-            <Navbar.Brand href="/" className="d-flex align-items-center">
-              <Image src={pic} width="30" height="30" alt=""/>
-              Spie
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="navbarScroll" />
-            <Navbar.Collapse id="navbarScroll">
-              <Nav navbar={true} className="ms-auto">
-                <Nav.Item>
-                  <Nav.Link>Home</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link>About Us</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link href="https://www.buymeacoffee.com/spie" className="py-0">
-                    <Buymeacoffee width="169.2" height="36" />
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Button onClick={()=>{ Router.push('/spotify') }}>Log In</Button>
-                </Nav.Item>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
+        <HomeNavBar />
         <div className="centralStuff">
             <div className="pie">
                 <Pie 
@@ -62,7 +37,7 @@ const App = () => {
                 />
             </div>
             <p>Get your most listened to lyrics with Spie!</p>
-            <Button onClick={()=>{ Router.push('/spotify') }}>Get Started</Button>
+            <Button onClick={()=>{ Router.replace('/spotify') }}>Get Started</Button>
         </div>
         
       </div>

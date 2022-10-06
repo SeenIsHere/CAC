@@ -2,7 +2,7 @@ import Router, { useRouter } from "next/router";
 import { useEffect } from "react";
 import LoadingPage from "../../Components/LoadingPage";
 
-const Results = ({ access_token, error }) => {
+const Results = ({ access_token }) => {
   const router = useRouter();
 
   useEffect(() => {
@@ -27,13 +27,13 @@ export async function getServerSideProps({
     locales,
     defaultLocale,
   }){
-    if(!("code" in query)) return { props: { access_token: null, error: "No Code Provided" } }
+    if(!("code" in query)) return { redirect: { destination: '/error?code=No Code Provided' } }
 
-    if("error" in query) return { props: { access_token: null, error: "User Cancel" } }
+    if("error" in query) return { redirect: { destination: '/' } }
 
     const postQuery = `code=${query.code}&redirect_uri=${process.env.SPOTIFY_REDIRECT_URI}&grant_type=authorization_code`;
 
-    const { access_token } = await fetch("https://accounts.spotify.com/api/token", {
+    const tokenAuth = await fetch("https://accounts.spotify.com/api/token", {
       method: "POST",
       headers: {
         Authorization:
@@ -49,7 +49,9 @@ export async function getServerSideProps({
       body: postQuery,
     }).then((res) => res.json());
 
-    console.log(access_token)
+    if ("error" in tokenAuth) return { redirect: { destination: '/error?code=' + tokenAuth.error.message }, }
+
+    const { access_token } = tokenAuth;
 
     return { props: { 
       access_token,
