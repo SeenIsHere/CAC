@@ -40,7 +40,7 @@ const AboutUs = () => {
         <h1> Our Team </h1>
         <div className="teamProfiles">
           <div className="teamProfile">
-            <Image src={TaylorHeadshot} className="teamPFP" priority />
+            <Image src={TaylorHeadshot} className="teamPFP" priority alt="Taylor PFP" />
             <div className="teamDesc">
               <h5> Taylor Houghtaling </h5>
               <p>
@@ -50,7 +50,7 @@ const AboutUs = () => {
             </div>
           </div>
           <div className="teamProfile">
-            <Image src={JamieHeadshot} className="teamPFP" priority />
+            <Image src={JamieHeadshot} className="teamPFP" priority alt="Jamie PFP" />
             <div className="teamDesc">
               <h5> Jamie Aleman-Mendoza </h5>
               <p>
@@ -61,7 +61,7 @@ const AboutUs = () => {
             </div>
           </div>
           <div className="teamProfile">
-            <Image src={SeanHeadshot} className="teamPFP" priority />
+            <Image src={SeanHeadshot} className="teamPFP" priority alt="Sean PFP" />
             <div className="teamDesc">
               <h5> Sean Devine </h5>
               <p>
@@ -71,7 +71,7 @@ const AboutUs = () => {
             </div>
           </div>
           <div className="teamProfile">
-            <Image src={ByronHeadshot} className="teamPFP" priority />
+            <Image src={ByronHeadshot} className="teamPFP" priority alt="Byron PFP" />
             <div className="teamDesc">
               <h5> Byron Manuel </h5>
               <p>

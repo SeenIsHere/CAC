@@ -77,7 +77,7 @@ const Card = ({ data, songColors, percentages, song }) => {
         <div className="infodiv">
           <div className="albumInfo">
             <div className="albumCoverImg">
-              <Image src={song.albumCover} width="500" height="500" />
+              <Image src={song.albumCover} width="500" height="500" alt="Cover Art" />
             </div>
             <div className="songDetails">
               <p className="songName">{song.title}</p>
@@ -87,7 +87,7 @@ const Card = ({ data, songColors, percentages, song }) => {
           <div className="percentageList">
             <h1>Percentage List</h1>
             {percentages.map((pair, i) => (
-              <p>{`#${i + 1}. ${pair[0]} - ${pair[1]}`}</p>
+              <p key={pair[0]}>{`#${i + 1}. ${pair[0]} - ${pair[1]}`}</p>
             ))}
           </div>
         </div>
