@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
 
- const extractLyrics = async (url) => {
+const extractLyrics = async (url) => {
   var data = await fetch(url).then((res) => res.text());
 
   const $ = cheerio.load(data);

@@ -1,30 +1,39 @@
-import Image from "next/image";
 import { Card, Button, Form } from "react-bootstrap";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import LoadingPage from "./LoadingPage";
-
+import HomeNavBar from "./HomeNavBar";
 
 const TopSongList = ({ topSongs }) => {
-  const router = useRouter()
-  const [loading, setLoading] = useState(false)
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const handleChartRedirect = (song) => {
-    setLoading(true)
-    router.push({ query: { access_token: router.query.access_token }, pathname: "/card/" + song.songID })
-  }
+    setLoading(true);
+    router.push({
+      query: { access_token: router.query.access_token },
+      pathname: "/card/" + song.songID,
+    });
+  };
 
-  if(loading) return <LoadingPage />
+  if (loading) return <LoadingPage />;
 
   return (
     <div className="TopSongListContainer">
       <div className="searchContainer">
         <Form.Control size="lg" type="text" placeholder="Search" />
+        <Button onClick={ ()=>{ router.replace("/") } }>Home</Button>
       </div>
       {topSongs.map((song) => (
         <div key={song.name}>
           <Card>
-            <Card.Img variant="top" src={song.albumCoverURL} onClick={() => { handleChartRedirect(song) }}/>
+            <Card.Img
+              variant="top"
+              src={song.albumCoverURL}
+              onClick={() => {
+                handleChartRedirect(song);
+              }}
+            />
             <Card.Body>
               <Card.Title href={song.songURI}>{song.name}</Card.Title>
               <Card.Subtitle>{song.artist}</Card.Subtitle>

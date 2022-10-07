@@ -1,19 +1,24 @@
 import Image from "next/image";
-import PAUL from "../public/PAUL.png";
-import logo from "../public/logo.png"
 import HomeNavBar from "../Components/HomeNavBar";
+
+//Pictures
+import Group from "../public/Group.jpeg";
+import TaylorHeadshot from "../public/Taylor-Headshot.jpeg";
+import JamieHeadshot from "../public/Jamie-Headshot.jpeg";
+import SeanHeadshot from "../public/Sean-Headshot.jpeg";
+import ByronHeadshot from "../public/Byron-Headshot.jpeg";
 
 const AboutUs = () => {
   return (
     <div className="amongUsContainer">
       <HomeNavBar />
-      <div className="introDiv" style={{ backgroundImage: `url(${logo.src})` }}>
+      <div className="introDiv" style={{ backgroundImage: `url(${Group.src})` }}>
         <div className="abtUs">
           <h1> About Us </h1>
           <p>
-            We&#39;re a group of sophomore, computer science majors from ACIT in New
-            Jersey hoping to express a little bit of creativity and development
-            with Spie.
+            We&#39;re a group of sophomore, computer science majors from ACIT in
+            New Jersey hoping to express a little bit of creativity and
+            development with Spie.
           </p>
         </div>
       </div>
@@ -34,43 +39,49 @@ const AboutUs = () => {
       <div className="teamDiv">
         <h1> Our Team </h1>
         <div className="teamProfiles">
-            <div className="teamProfile">
-            <Image src={PAUL} className="teamPFP" />
+          <div className="teamProfile">
+            <Image src={TaylorHeadshot} className="teamPFP" priority />
             <div className="teamDesc">
-                <h5> Taylor Houghtaling </h5>
-                <p> 5&#39;10 tall hunk of a man. Inteligent, strong, sexy, amazing. </p>
-            </div>
-            </div>
-            <div className="teamProfile">
-            <Image src={PAUL} className="teamPFP" />
-            <div className="teamDesc">
-                <h5> Jamie Aleman-Mendoza </h5>
-                <p>
+              <h5> Taylor Houghtaling </h5>
+              <p>
                 {" "}
-                Dual Athlete: I play soccer and volleyball and I really like sand.{" "}
-                </p>
+                5&#39;10 tall hunk of a man. Inteligent, strong, sexy, amazing.{" "}
+              </p>
             </div>
-            </div>
-            <div className="teamProfile">
-            <Image src={PAUL} className="teamPFP" />
+          </div>
+          <div className="teamProfile">
+            <Image src={JamieHeadshot} className="teamPFP" priority />
             <div className="teamDesc">
-                <h5> Sean Devine </h5>
-                <p> I love my team members more than friends :sussy_amogus_imposter: </p>
-            </div>
-            </div>
-            <div className="teamProfile">
-            <Image src={PAUL} className="teamPFP" />
-            <div className="teamDesc">
-                <h5> Byron Manuel </h5>
-                <p>
+              <h5> Jamie Aleman-Mendoza </h5>
+              <p>
                 {" "}
-                Somewhat lazy coder but eccentric graphic designer. Obsessed with
-                music.
-                </p>
+                Dual Athlete: I play soccer and volleyball and I really like
+                sand.{" "}
+              </p>
             </div>
+          </div>
+          <div className="teamProfile">
+            <Image src={SeanHeadshot} className="teamPFP" priority />
+            <div className="teamDesc">
+              <h5> Sean Devine </h5>
+              <p>
+                {" "}
+                I love my team members more than friends :sussy_amogus_imposter:{" "}
+              </p>
             </div>
+          </div>
+          <div className="teamProfile">
+            <Image src={ByronHeadshot} className="teamPFP" priority />
+            <div className="teamDesc">
+              <h5> Byron Manuel </h5>
+              <p>
+                {" "}
+                Somewhat lazy coder but eccentric graphic designer. Obsessed
+                with music.
+              </p>
+            </div>
+          </div>
         </div>
-
       </div>
     </div>
   );

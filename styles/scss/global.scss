@@ -12,6 +12,7 @@ $theme-colors: (
 );
 
 body {
+  overflow-x: hidden !important;
   background-color: #333;
   width: 100vw;
   height: 100vh;
@@ -66,6 +67,20 @@ body {
       display: flex;
       justify-content: center;
 
+      button {
+        background: #e2288e;
+        color: #333;
+        margin: min(1vw, 1vh) 0;
+        margin-left: min(1vw, 1vh);
+        font-weight: bold;
+        border: none;
+
+        &:hover {
+          background: darken(#e2288e, 10%);
+          color: #333;
+        }
+      }
+
       & > input[type="text"] {
         width: 50vw;
         margin: min(1vw, 1vh) 0;
@@ -106,12 +121,57 @@ body {
 
     .pieContainer {
       display: flex;
-      justify-content: center;
+      justify-content:space-around;
+      flex-wrap: wrap;
 
       margin-top: min(20vh, 45vw);
 
       .pie {
-        width: min(70vh, 90vw);
+        width: min(60vh, 72vw);
+      }
+      .infodiv {
+        width: min(50vh, 60vw);
+        height: min(60vh, 72vw);
+        display: flex;
+        flex-direction: column;
+
+        .albumInfo {
+          height: min(20vh, 26vw);
+          width: min(50vh, 60vw);
+          display: flex;
+          flex-direction: row;
+
+          .albumCoverImg {
+            width: min(10vh, 15vw);
+            height: min(10vh, 15vw);
+            margin-right: min(1vh, 2vw);
+          }
+
+          .songDetails {
+
+            height: min(10vh, 15vw);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+
+            .songName {
+              font-size: min(2.3vh, 3vw);
+              font-weight: bold;
+            }
+            .artistName {
+              font-size: min(2vh, 2.5vw);
+            }
+          }
+        }
+
+        .percentageList {
+          text-align: center;
+          color: white;
+          height: min(40vh, 47vw);
+          width: min(50vh, 60vw);
+          font-weight: 900;
+        }
       }
     }
   }
@@ -256,8 +316,6 @@ body {
     width: 100vw;
     height: 100vh;
 
-
-
     .centralStuff {
       width: 100vw;
       height: 80vh;
@@ -345,13 +403,17 @@ body {
 
     .introDiv {
       min-height: 35vh;
-      // background-image: url("/public/logo.png");
+      height: 50vh;
       background-attachment: fixed;
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
       background-color: #343d46;
       padding: 5vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
     }
 
     .abtUs {
@@ -388,8 +450,7 @@ body {
       background-color: #343d46;
       font-family: "Copper Plate", Monospace, Fantasy;
       color: lightgoldenrodyellow;
-
-
+      
       & > .teamProfiles {
         display: flex;
         flex-direction: row;
@@ -399,14 +460,16 @@ body {
         & > .teamProfile {
           margin: 5vh;
           display: inline-block;
-          width: min(80vw, 50vh);
+          width: min(80vw, 35vh);
           border: 5px solid #cf1c7d;
           box-shadow: 21px 18px 20px 2px rgba(207, 28, 125, 0.82);
+          border-radius: 30px;
     
           & > span {
-            width: min(80vw, 50vh) !important;
+            width: min(80vw, 35vh) !important;
             aspect-ratio: 1/1 !important;
             border: 2px;
+            border-radius: 24px;
           }
       
           & > .teamDesc {
@@ -415,15 +478,8 @@ body {
           }
     
         }
-  
       }
-
     }
-
-
-
-
-
   }
 }
 
