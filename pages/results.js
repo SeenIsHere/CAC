@@ -15,7 +15,7 @@ export async function getServerSideProps({ query }) {
   if (!("access_token" in query))
     return { redirect: { destination: "/error?code=No Access Token" } };
 
-  var topTracks = await fetch(
+  var topTracksRes = await fetch(
     "https://api.spotify.com/v1/me/top/tracks?" + new URLSearchParams({ limit: 12, time_range: "medium_term" }),
     { headers: { Authorization: "Bearer " + query.access_token } }
   )
