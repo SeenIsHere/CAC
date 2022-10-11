@@ -15,7 +15,6 @@ const createOptions = (data, songColors) => {
       {
         label: "Words",
         data: dataValues,
-        hoverOffset: 8,
         backgroundColor: songColors,
         borderWidth: 0,
       },

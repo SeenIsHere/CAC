@@ -3,10 +3,12 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import LoadingPage from "./LoadingPage";
 import HomeNavBar from "./HomeNavBar";
+import { simplifyTrackData } from "../Methods/simplifyTrackData";
 
-const TopSongList = ({ topSongs }) => {
+const TopSongList = ({ topSongs, setSearchSongs }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleChartRedirect = (song) => {
     setLoading(true);
@@ -21,11 +23,40 @@ const TopSongList = ({ topSongs }) => {
   return (
     <div className="TopSongListContainer">
       <div className="searchContainer">
-        <Form.Control size="lg" type="text" placeholder="Search" />
-        <Button onClick={ ()=>{ router.replace("/") } }>Home</Button>
+        <Button
+          onClick={() => {
+            router.replace("/");
+          }}>
+          Home
+        </Button>
+
+        <Form.Control
+          size="lg"
+          type="text"
+          placeholder="Search"
+          onChange={(text) => {
+            setSearchQuery(text.target.value);
+          }}
+        />
+        <Button
+          onClick={() => {
+            fetch(
+              "/api/search?" +
+                new URLSearchParams({
+                  access_token: router.query.access_token,
+                  q: searchQuery,
+                })
+            )
+              .then((r) => r.json())
+              .then((data) => {
+                setSearchSongs(simplifyTrackData(data));
+              });
+          }}>
+          Search
+        </Button>
       </div>
-      {topSongs.map((song) => (
-        <div key={song.name}>
+      {topSongs.map((song, i) => (
+        <div key={song.name + i}>
           <Card>
             <Card.Img
               variant="top"

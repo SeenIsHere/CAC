@@ -1,17 +1,22 @@
 import TopSongList from "../Components/TopSongList";
+import { useState } from "react"
+import { simplifyTrackData } from "../Methods/simplifyTrackData"
 
 Array.prototype.isEmpty = function () {
   return !this.length;
 };
 
-const Results = ({ topSongs }) => <TopSongList topSongs={topSongs} />;
+const Results = ({ topSongs }) => {
+  const [searchSongs, setSearchSongs] = useState(null)
+  return <TopSongList topSongs={searchSongs ?? topSongs} setSearchSongs={setSearchSongs} />;
+}
 
 export async function getServerSideProps({ query }) {
   if (!("access_token" in query))
     return { redirect: { destination: "/error?code=No Access Token" } };
 
   var topTracks = await fetch(
-    "https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=medium_term",
+    "https://api.spotify.com/v1/me/top/tracks?" + new URLSearchParams({ limit: 12, time_range: "medium_term" }),
     { headers: { Authorization: "Bearer " + query.access_token } }
   ).then((res) => res.json());
 
@@ -22,13 +27,7 @@ export async function getServerSideProps({ query }) {
   if (topTracks.items.isEmpty())
     return { redirect: { destination: "/error?code=No Top Songs" } };
 
-  var songs = topTracks.items.slice(0, 12).map((song) => ({
-    name: song.name,
-    artist: song.artists[0].name,
-    albumCoverURL: song.album.images[0].url,
-    songURI: song.uri,
-    songID: song.id,
-  }));
+  var songs = simplifyTrackData(topTracks.items)
 
   return { props: { topSongs: songs } };
 }

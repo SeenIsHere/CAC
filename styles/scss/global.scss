@@ -11,11 +11,11 @@ $theme-colors: (
   "dark": #001738,
 );
 
-body {
+html, body {
   overflow-x: hidden !important;
-  background-color: #333;
+  background: #333 !important;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 
   .home-nav-bar {
       background: #333 !important;
@@ -70,8 +70,7 @@ body {
       button {
         background: #e2288e;
         color: #333;
-        margin: min(1vw, 1vh) 0;
-        margin-left: min(1vw, 1vh);
+        margin: min(1vw, 1vh);
         font-weight: bold;
         border: none;
 
@@ -90,7 +89,6 @@ body {
 
   .chartContainer {
     width: 100vw;
-    height: 100vh;
     background-color: #333;
 
     .nav-item {
@@ -124,10 +122,12 @@ body {
       justify-content:space-around;
       flex-wrap: wrap;
 
-      margin-top: min(20vh, 45vw);
+      margin-top: min(10vh, 22.5vw);
 
       .pie {
+        padding: 10px;
         width: min(60vh, 72vw);
+        margin-bottom: min(3vh, 2vw);
       }
       .infodiv {
         width: min(50vh, 60vw);
@@ -136,14 +136,15 @@ body {
         flex-direction: column;
 
         .albumInfo {
-          height: min(20vh, 26vw);
-          width: min(50vh, 60vw);
+          height: min(25vh, 31vw);
+          width: min(55vh, 65vw);
           display: flex;
           flex-direction: row;
+          margin-bottom: min(11vh, 5vw);
 
           .albumCoverImg {
-            width: min(10vh, 15vw);
-            height: min(10vh, 15vw);
+            width: min(15vh, 25vw);
+            height: min(15vh, 25vw);
             margin-right: min(1vh, 2vw);
           }
 
@@ -168,10 +169,10 @@ body {
         .percentageList {
           text-align: center;
           color: white;
-          height: min(40vh, 47vw);
+          height: max(75vh, 82vw);
           width: min(50vh, 60vw);
           font-weight: 900;
-          font-size: min(1.8vh, 2.25vw);
+          font-size: min(2vh, 2.25vw);
         }
       }
     }
@@ -466,10 +467,12 @@ body {
           box-shadow: 21px 18px 20px 2px rgba(207, 28, 125, 0.82);
           border-radius: 30px;
     
-          & > span {
-            width: min(80vw, 35vh) !important;
-            aspect-ratio: 1/1 !important;
-            border: 2px;
+          & > img {
+            // width: min(78.1vw, 34.1vh) !important;
+            // height: min(78.1vw, 34.1vh) !important;
+            width: 100% !important;
+            height: auto;
+            // aspect-ratio: 1/1 !important;
             border-radius: 24px;
           }
       

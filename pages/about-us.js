@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/future/image";
 import HomeNavBar from "../Components/HomeNavBar";
 
 //Pictures
@@ -12,7 +12,9 @@ const AboutUs = () => {
   return (
     <div className="amongUsContainer">
       <HomeNavBar />
-      <div className="introDiv" style={{ backgroundImage: `url(${Group.src})` }}>
+      <div
+        className="introDiv"
+        style={{ backgroundImage: `url(${Group.src})` }}>
         <div className="abtUs">
           <h1> About Us </h1>
           <p>
@@ -40,17 +42,29 @@ const AboutUs = () => {
         <h1> Our Team </h1>
         <div className="teamProfiles">
           <div className="teamProfile">
-            <Image src={TaylorHeadshot} className="teamPFP" priority alt="Taylor PFP" />
+            <Image
+              src={TaylorHeadshot}
+              className="teamPFP"
+              priority
+              alt="Taylor PFP"
+            />
             <div className="teamDesc">
               <h5> Taylor Houghtaling </h5>
               <p>
                 {" "}
-                5&#39;10 tall hunk of a man. Inteligent, strong, sexy, amazing.{" "}
+                programming haiku's <br />
+                requires a lot of effort <br />
+                hello world, easy{" "}
               </p>
             </div>
           </div>
           <div className="teamProfile">
-            <Image src={JamieHeadshot} className="teamPFP" priority alt="Jamie PFP" />
+            <Image
+              src={JamieHeadshot}
+              className="teamPFP"
+              priority
+              alt="Jamie PFP"
+            />
             <div className="teamDesc">
               <h5> Jamie Aleman-Mendoza </h5>
               <p>
@@ -61,17 +75,33 @@ const AboutUs = () => {
             </div>
           </div>
           <div className="teamProfile">
-            <Image src={SeanHeadshot} className="teamPFP" priority alt="Sean PFP" />
+            <Image
+              src={SeanHeadshot}
+              className="teamPFP"
+              priority
+              alt="Sean PFP"
+            />
             <div className="teamDesc">
               <h5> Sean Devine </h5>
               <p>
                 {" "}
-                I love my team members more than friends :sussy_amogus_imposter:{" "}
+                Lead Backend Developer. Check out my personal{" "}
+                <a
+                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                  target="_blank">
+                  site
+                </a>
+                . Love ⚾ &#38; 🥋{" "}
               </p>
             </div>
           </div>
           <div className="teamProfile">
-            <Image src={ByronHeadshot} className="teamPFP" priority alt="Byron PFP" />
+            <Image
+              src={ByronHeadshot}
+              className="teamPFP"
+              priority
+              alt="Byron PFP"
+            />
             <div className="teamDesc">
               <h5> Byron Manuel </h5>
               <p>
