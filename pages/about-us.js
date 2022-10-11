@@ -52,7 +52,7 @@ const AboutUs = () => {
               <h5> Taylor Houghtaling </h5>
               <p>
                 {" "}
-                programming haiku's <br />
+                programming haiku&#39;s <br />
                 requires a lot of effort <br />
                 hello world, easy{" "}
               </p>
@@ -88,7 +88,8 @@ const AboutUs = () => {
                 Lead Backend Developer. Check out my personal{" "}
                 <a
                   href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                  target="_blank">
+                  target="_blank"
+                  rel="noreferrer">
                   site
                 </a>
                 . Love ⚾ &#38; 🥋{" "}
