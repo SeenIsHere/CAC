@@ -18,7 +18,11 @@ export async function getServerSideProps({ query }) {
   var topTracks = await fetch(
     "https://api.spotify.com/v1/me/top/tracks?" + new URLSearchParams({ limit: 12, time_range: "medium_term" }),
     { headers: { Authorization: "Bearer " + query.access_token } }
-  ).then((res) => res.json());
+  )
+  
+  console.log(topTracksRes)
+  
+  var topTracks = await topTracksRes.json();
 
   if ("error" in topTracks)
     return {
