@@ -1,9 +1,11 @@
 import { Nav } from "react-bootstrap";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
+import Image from "next/future/image";
 import axios from "axios";
 import ColorThief from "pure-color-thief-node";
+
+import SpotifyLogo from "../../Images/SpotifyLogo.png"
 
 import LyricsPieChart from "../../Components/LyricsPieChart";
 import songsToWords from "../../Methods/songsToWords";
@@ -76,12 +78,11 @@ const Card = ({ data, songColors, percentages, song }) => {
         </div>
         <div className="infodiv">
           <div className="albumInfo">
-            <div className="albumCoverImg">
-              <Image src={song.albumCover} width="500" height="500" alt="Cover Art" />
-            </div>
-            <div className="songDetails">
+            <Image src={song.albumCover} width="500" height="500" alt="Cover Art" className="albumCoverImg" />
+            <div className="songDetails" onClick={() => { router.replace(song.uri) }}>
               <p className="songName">{song.title}</p>
               <p className="artistName">{song.primaryArtist}</p>
+              <Image src={SpotifyLogo} width={256} height={75} alt="Spotify Logo" className="spotifyLogo" />
             </div>
           </div>
           <div className="percentageList">
@@ -111,7 +112,8 @@ export async function getServerSideProps({ query }) {
 
   const albumCover = song.album.images[0].url,
     title = song.name,
-    primaryArtist = song.artists[0].name;
+    primaryArtist = song.artists[0].name,
+    uri = song.uri
 
   var lyrics = await songsToWords(song);
   if (!lyrics)
@@ -169,7 +171,7 @@ export async function getServerSideProps({ query }) {
     .map((x) => `rgba(${x.join(", ")}, 1)`);
 
   data.all = data.all.slice(0, numOfWords);
-  data.filterProfanity = data.filterProfanity.slice(0, numOfWords);
+  data.filterCommonWords = data.filterCommonWords.slice(0, numOfWords);
   data.filterProfanity = data.filterProfanity.slice(0, numOfWords);
   data.allFilters = data.allFilters.slice(0, numOfWords);
 
@@ -178,7 +180,7 @@ export async function getServerSideProps({ query }) {
       data,
       songColors,
       percentages,
-      song: { albumCover, title, primaryArtist },
+      song: { albumCover, title, primaryArtist, uri },
     },
   };
 }

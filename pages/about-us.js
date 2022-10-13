@@ -2,16 +2,65 @@ import Image from "next/future/image";
 import HomeNavBar from "../Components/HomeNavBar";
 
 //Pictures
-import Group from "../public/Group.jpeg";
-import TaylorHeadshot from "../public/Taylor-Headshot.jpeg";
-import JamieHeadshot from "../public/Jamie-Headshot.jpeg";
-import SeanHeadshot from "../public/Sean-Headshot.jpeg";
-import ByronHeadshot from "../public/Byron-Headshot.jpeg";
+import Group from "../Images/Group.jpeg";
+import TaylorHeadshot from "../Images/Taylor-Headshot.jpeg";
+import JamieHeadshot from "../Images/Jamie-Headshot.jpeg";
+import SeanHeadshot from "../Images/Sean-Headshot.jpeg";
+import ByronHeadshot from "../Images/Byron-Headshot.jpeg";
+
+
+var teamInfo = [
+  {
+    content: (
+      <p>
+        programming haiku&#39;s <br />
+        requires a lot of effort <br />
+        hello world, easy
+      </p>
+    ),
+    name: "Taylor Houghtaling",
+    image: TaylorHeadshot,
+  },
+  {
+    content: (
+      <p>Dual Athlete: I play soccer and volleyball and I really like sand.</p>
+    ),
+    name: "Jamie Aleman-Mendoza",
+    image: JamieHeadshot,
+  },
+  {
+    content: (
+      <p>
+        Lead Backend Developer. Check out my personal{" "}
+        <a
+          href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          target="_blank"
+          rel="noreferrer">
+          site
+        </a>
+        . Love ⚾ &#38; 🥋
+      </p>
+    ),
+    name: "Sean Devine",
+    image: SeanHeadshot,
+  },
+  {
+    content: (
+      <p>
+        Somewhat lazy coder but eccentric graphic designer. Obsessed with music.
+      </p>
+    ),
+    name: "Byron Manuel",
+    image: ByronHeadshot,
+  },
+];
 
 const AboutUs = () => {
   return (
+
+    
     <div className="amongUsContainer">
-      <HomeNavBar />
+    <HomeNavBar />
       <div
         className="introDiv"
         style={{ backgroundImage: `url(${Group.src})` }}>
@@ -41,80 +90,24 @@ const AboutUs = () => {
       <div className="teamDiv">
         <h1> Our Team </h1>
         <div className="teamProfiles">
-          <div className="teamProfile">
-            <Image
-              src={TaylorHeadshot}
-              className="teamPFP"
-              priority
-              alt="Taylor PFP"
-            />
-            <div className="teamDesc">
-              <h5> Taylor Houghtaling </h5>
-              <p>
-                {" "}
-                programming haiku&#39;s <br />
-                requires a lot of effort <br />
-                hello world, easy{" "}
-              </p>
+          {teamInfo.map((memberInfo) => (
+            <div className="teamProfile" key={memberInfo.name}>
+              <Image
+                src={memberInfo.image}
+                className="teamPFP"
+                priority
+                alt={memberInfo.name + " PFP"}
+              />
+              <div className="teamDesc">
+                <h5>{memberInfo.name}</h5>
+                {memberInfo.content}
+              </div>
             </div>
-          </div>
-          <div className="teamProfile">
-            <Image
-              src={JamieHeadshot}
-              className="teamPFP"
-              priority
-              alt="Jamie PFP"
-            />
-            <div className="teamDesc">
-              <h5> Jamie Aleman-Mendoza </h5>
-              <p>
-                {" "}
-                Dual Athlete: I play soccer and volleyball and I really like
-                sand.{" "}
-              </p>
-            </div>
-          </div>
-          <div className="teamProfile">
-            <Image
-              src={SeanHeadshot}
-              className="teamPFP"
-              priority
-              alt="Sean PFP"
-            />
-            <div className="teamDesc">
-              <h5> Sean Devine </h5>
-              <p>
-                {" "}
-                Lead Backend Developer. Check out my personal{" "}
-                <a
-                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                  target="_blank"
-                  rel="noreferrer">
-                  site
-                </a>
-                . Love ⚾ &#38; 🥋{" "}
-              </p>
-            </div>
-          </div>
-          <div className="teamProfile">
-            <Image
-              src={ByronHeadshot}
-              className="teamPFP"
-              priority
-              alt="Byron PFP"
-            />
-            <div className="teamDesc">
-              <h5> Byron Manuel </h5>
-              <p>
-                {" "}
-                Somewhat lazy coder but eccentric graphic designer. Obsessed
-                with music.
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
+
   );
 };
 

@@ -2,8 +2,9 @@ import { Card, Button, Form } from "react-bootstrap";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import LoadingPage from "./LoadingPage";
-import HomeNavBar from "./HomeNavBar";
 import { simplifyTrackData } from "../Methods/simplifyTrackData";
+import SpotifyLogo from "../Images/SpotifyLogo.png"
+import Image from "next/future/image"
 
 const TopSongList = ({ topSongs, setSearchSongs }) => {
   const router = useRouter();
@@ -65,9 +66,10 @@ const TopSongList = ({ topSongs, setSearchSongs }) => {
                 handleChartRedirect(song);
               }}
             />
-            <Card.Body>
+            <Card.Body onClick={()=>{ router.replace(song.songURI) }}>
               <Card.Title href={song.songURI}>{song.name}</Card.Title>
               <Card.Subtitle>{song.artist}</Card.Subtitle>
+              <Image src={SpotifyLogo.src} height={75/2} width={256/2} style={{ float: "right" }} alt="Spotify Logo"/>
             </Card.Body>
           </Card>
         </div>

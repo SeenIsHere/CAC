@@ -11,37 +11,38 @@ $theme-colors: (
   "dark": #001738,
 );
 
-html, body {
+html,
+body {
   overflow-x: hidden !important;
   background: #333 !important;
   width: 100vw;
   min-height: 100vh;
 
   .home-nav-bar {
-      background: #333 !important;
+    background: #333 !important;
 
-      .btn {
-        background: #e2288e;
+    .btn {
+      background: #e2288e;
+      color: #333;
+      width: 100px;
+      margin-right: 10px;
+      font-weight: bold;
+      border: none;
+
+      &:hover {
+        background: darken(#e2288e, 10%);
         color: #333;
-        width: 100px;
-        margin-right: 10px;
-        font-weight: bold;
-        border: none;
-
-        &:hover {
-          background: darken(#e2288e, 10%);
-          color: #333;
-        }
       }
+    }
 
-      a {
-        color: #cf1c7d;
-        font-weight: normal;
+    a {
+      color: #cf1c7d;
+      font-weight: normal;
 
-        &:hover {
-          color: darken(#cf1c7d, 10%);
-        }
+      &:hover {
+        color: darken(#cf1c7d, 10%);
       }
+    }
   }
 
   .TopSongListContainer {
@@ -119,7 +120,7 @@ html, body {
 
     .pieContainer {
       display: flex;
-      justify-content:space-around;
+      justify-content: space-around;
       flex-wrap: wrap;
 
       margin-top: min(10vh, 22.5vw);
@@ -141,6 +142,10 @@ html, body {
           display: flex;
           flex-direction: row;
           margin-bottom: min(11vh, 5vw);
+          
+          &:hover {
+            cursor: pointer;
+          }
 
           .albumCoverImg {
             width: min(15vh, 25vw);
@@ -149,8 +154,7 @@ html, body {
           }
 
           .songDetails {
-
-            height: min(10vh, 15vw);
+            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -163,6 +167,11 @@ html, body {
             .artistName {
               font-size: min(2vh, 2.5vw);
             }
+            .spotifyLogo {
+              width: min(10vh, 12vw);
+              height: auto;
+            }
+
           }
         }
 
@@ -400,32 +409,35 @@ html, body {
       font-size: 30px;
     }
   }
-
+  //141x112
   .amongUsContainer {
-
     .introDiv {
-      min-height: 35vh;
-      height: 50vh;
+      height: 35vh;
+
       background-attachment: fixed;
-      background-position: center;
+      background-position: center center;
       background-repeat: no-repeat;
       background-size: cover;
       background-color: #343d46;
-      padding: 5vw;
+
       display: flex;
       justify-content: center;
-      align-items: center;
-      
-    }
+      align-items: flex-end;
 
-    .abtUs {
-      width: min(50vw, 90vh);
-      margin: auto;
-      text-align: center;
-      font-weight:800;
-      padding: 30px;
-      font-family: "Copper Plate", Monospace, Fantasy;
-      color: lightgoldenrodyellow;
+      .abtUs {
+        font-size: min(3vw, 3vh);
+        width: min(50vw, 90vh);
+
+        text-align: center;
+        font-weight: 800;
+        padding: 30px;
+        font-family: "Copper Plate", Monospace, Fantasy;
+
+        & > p, & > h1 {
+          color: white;
+          mix-blend-mode: difference;
+        }
+      }
     }
 
     .spieDiv {
@@ -452,13 +464,13 @@ html, body {
       background-color: #343d46;
       font-family: "Copper Plate", Monospace, Fantasy;
       color: lightgoldenrodyellow;
-      
+
       & > .teamProfiles {
         display: flex;
         flex-direction: row;
         justify-content: center;
         flex-wrap: wrap;
-  
+
         & > .teamProfile {
           margin: 5vh;
           display: inline-block;
@@ -466,21 +478,17 @@ html, body {
           border: 5px solid #cf1c7d;
           box-shadow: 21px 18px 20px 2px rgba(207, 28, 125, 0.82);
           border-radius: 30px;
-    
+
           & > img {
-            // width: min(78.1vw, 34.1vh) !important;
-            // height: min(78.1vw, 34.1vh) !important;
             width: 100% !important;
             height: auto;
-            // aspect-ratio: 1/1 !important;
             border-radius: 24px;
           }
-      
+
           & > .teamDesc {
             margin-top: 5px;
             padding: 15px;
           }
-    
         }
       }
     }
