@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/future/image";
 import { Button, Navbar, Nav, Container } from "react-bootstrap";
 import pic from "../Images/logo.png";
 import Buymeacoffee from "../Images/Buymeacoffee.svg";
@@ -30,12 +30,21 @@ const HomeNavBar = () => {
                 }}>
                 About Us
               </Nav.Link>
+
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link
+                onClick={() => {
+                  Router.push("/privacy-policy");
+                }}>
+                Privacy policy
+              </Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link
                 href="https://www.buymeacoffee.com/spie"
                 className="py-0">
-                <Buymeacoffee width="169.2" height="36" />
+                <Buymeacoffee width="169.2" height="36"/>
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>

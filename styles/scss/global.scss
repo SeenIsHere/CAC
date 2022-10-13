@@ -43,6 +43,11 @@ body {
         color: darken(#cf1c7d, 10%);
       }
     }
+
+   .nav-link > svg, .nav-item > button {
+      margin: 5px 0 !important;
+    }
+
   }
 
   .TopSongListContainer {
