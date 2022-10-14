@@ -3,7 +3,7 @@ const simplifyTrackData = (tracks) => {
         name: song.name,
         artist: song.artists[0].name,
         albumCoverURL: song.album.images[0].url,
-        songURI: song.uri,
+        url: song.external_urls.spotify,
         songID: song.id,
       }));
 }
