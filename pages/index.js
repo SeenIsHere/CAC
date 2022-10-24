@@ -14,6 +14,7 @@ const App = () => {
     <>
       <Head>
         <title>Spie</title>
+        <meta name="google-site-verification" content="43KZfQhES-PGw6ZpcyAw_aQmUVfaC9W9bQZy4KhquSI" />
       </Head>
       <div className="home">
         <HomeNavBar />

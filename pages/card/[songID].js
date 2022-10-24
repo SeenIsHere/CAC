@@ -84,7 +84,7 @@ const Card = ({ data, songColors, percentages, song }) => {
         <div className="infodiv">
           <div className="albumInfo">
             <Image src={song.albumCover} width="500" height="500" alt="Cover Art" className="albumCoverImg" />
-            <div className="songDetails" onClick={() => { router.replace(song.uri) }}>
+            <div className="songDetails" onClick={() => { router.replace(song.url) }}>
               <p className="songName">{song.title}</p>
               <p className="artistName">{song.primaryArtist}</p>
               <Image src={SpotifyLogo} width={256} height={75} alt="Spotify Logo" className="spotifyLogo" />
@@ -119,7 +119,7 @@ export async function getServerSideProps({ query }) {
   const albumCover = song.album.images[2].url,
     title = song.name,
     primaryArtist = song.artists[0].name,
-    uri = song.uri
+    url = song.external_urls.spotify
 
   var lyrics = await songsToWords(song);
   if (!lyrics)
@@ -186,7 +186,7 @@ export async function getServerSideProps({ query }) {
       data,
       songColors,
       percentages,
-      song: { albumCover, title, primaryArtist, uri },
+      song: { albumCover, title, primaryArtist, url },
     },
   };
 }

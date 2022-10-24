@@ -71,7 +71,7 @@ const TopSongList = ({ topSongs, setSearchSongs }) => {
                 handleChartRedirect(song);
               }}
             />
-            <Card.Body onClick={()=>{ router.replace(song.songURI) }}>
+            <Card.Body onClick={()=>{ router.replace(song.url) }}>
               <Card.Title href={song.songURI}>{song.name}</Card.Title>
               <Card.Subtitle>{song.artist}</Card.Subtitle>
               <Image src={SpotifyLogo.src} height={75/2} width={256/2} style={{ float: "right" }} alt="Spotify Logo"/>
