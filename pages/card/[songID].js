@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Image from "next/future/image";
 import axios from "axios";
 import ColorThief from "pure-color-thief-node";
+import Head from "next/head";
 
 import SpotifyLogo from "../../Images/SpotifyLogo.png"
 
@@ -22,6 +23,10 @@ const Card = ({ data, songColors, percentages, song }) => {
   const router = useRouter();
 
   return (
+    <>
+    <Head>
+      <title>{song.title} by {song.primaryArtist}</title>
+    </Head>
     <div className="chartContainer">
       <Nav className="w-100 d-flex" variant="pills" fill={true}>
         <Nav.Item
@@ -94,6 +99,7 @@ const Card = ({ data, songColors, percentages, song }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
@@ -110,7 +116,7 @@ export async function getServerSideProps({ query }) {
   if ("error" in song)
     return { redirect: { destination: "/error?code=" + song.error.message } };
 
-  const albumCover = song.album.images[0].url,
+  const albumCover = song.album.images[2].url,
     title = song.name,
     primaryArtist = song.artists[0].name,
     uri = song.uri

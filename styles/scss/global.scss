@@ -19,7 +19,12 @@ body {
   min-height: 100vh;
 
   .home-nav-bar {
+    width: 100vw;
     background: #333 !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
 
     .btn {
       background: #e2288e;
@@ -44,10 +49,10 @@ body {
       }
     }
 
-   .nav-link > svg, .nav-item > button {
+    .nav-link > svg,
+    .nav-item > button {
       margin: 5px 0 !important;
     }
-
   }
 
   .TopSongListContainer {
@@ -147,7 +152,7 @@ body {
           display: flex;
           flex-direction: row;
           margin-bottom: min(11vh, 5vw);
-          
+
           &:hover {
             cursor: pointer;
           }
@@ -176,7 +181,6 @@ body {
               width: min(10vh, 12vw);
               height: auto;
             }
-
           }
         }
 
@@ -394,10 +398,11 @@ body {
   .error-page-container {
     width: 100vw;
     height: 100vh;
-    background-color: #343d46;
     display: flex;
     align-items: center;
     flex-direction: column;
+    background-image: url("https://c.tenor.com/8uAPPH9GpOUAAAAC/white-monkey-confused.gif");
+    background-size: cover;
 
     .Main {
       font-family: "Copper Plate", Monospace, Fantasy;
@@ -409,25 +414,27 @@ body {
     .Sub {
       font-family: "Copper Plate", Monospace, Fantasy;
       color: #cf1c7d;
-      width: 40vw;
+      width: 250px;
       font-weight: 900;
       font-size: 30px;
     }
   }
-  //141x112
+
   .amongUsContainer {
+
     .introDiv {
-      height: 35vh;
+
+      height: calc(900vw / 13);
 
       background-attachment: fixed;
       background-position: center center;
       background-repeat: no-repeat;
-      background-size: cover;
+      background-size: contain;
       background-color: #343d46;
 
       display: flex;
       justify-content: center;
-      align-items: flex-end;
+      align-items: center;
 
       .abtUs {
         font-size: min(3vw, 3vh);
@@ -438,7 +445,8 @@ body {
         padding: 30px;
         font-family: "Copper Plate", Monospace, Fantasy;
 
-        & > p, & > h1 {
+        & > p,
+        & > h1 {
           color: white;
           mix-blend-mode: difference;
         }

@@ -1,5 +1,6 @@
 import Image from "next/future/image";
 import HomeNavBar from "../Components/HomeNavBar";
+import Head from "next/head"
 
 //Pictures
 import Group from "../Images/Group.jpeg";
@@ -31,14 +32,7 @@ var teamInfo = [
   {
     content: (
       <p>
-        Lead Backend Developer. Check out my personal{" "}
-        <a
-          href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-          target="_blank"
-          rel="noreferrer">
-          site
-        </a>
-        . Love ⚾ &#38; 🥋
+        Lead Backend Developer. Love ⚾ &#38; 🥋
       </p>
     ),
     name: "Sean Devine",
@@ -57,7 +51,10 @@ var teamInfo = [
 
 const AboutUs = () => {
   return (
-
+    <>
+    <Head>
+      <title>About Us</title>
+    </Head>
     
     <div className="amongUsContainer">
     <HomeNavBar />
@@ -107,7 +104,7 @@ const AboutUs = () => {
         </div>
       </div>
     </div>
-
+    </>
   );
 };
 

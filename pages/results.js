@@ -20,8 +20,6 @@ export async function getServerSideProps({ query }) {
     { headers: { Authorization: "Bearer " + query.access_token } }
   )
   
-  console.log(topTracksRes)
-  
   var topTracks = await topTracksRes.json();
 
   if ("error" in topTracks)

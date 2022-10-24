@@ -5,6 +5,7 @@ import LoadingPage from "./LoadingPage";
 import { simplifyTrackData } from "../Methods/simplifyTrackData";
 import SpotifyLogo from "../Images/SpotifyLogo.png"
 import Image from "next/future/image"
+import Head from "next/head";
 
 const TopSongList = ({ topSongs, setSearchSongs }) => {
   const router = useRouter();
@@ -22,6 +23,10 @@ const TopSongList = ({ topSongs, setSearchSongs }) => {
   if (loading) return <LoadingPage />;
 
   return (
+    <>
+    <Head>
+      <title>Songs</title>
+    </Head>
     <div className="TopSongListContainer">
       <div className="searchContainer">
         <Button
@@ -75,6 +80,7 @@ const TopSongList = ({ topSongs, setSearchSongs }) => {
         </div>
       ))}
     </div>
+    </>
   );
 };
 

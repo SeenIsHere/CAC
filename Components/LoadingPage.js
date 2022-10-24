@@ -1,8 +1,13 @@
 import { Fragment } from "react";
 import { Button } from "react-bootstrap";
+import Head from "next/head";
 
 const LoadingPage = () => {
   return (
+    <>
+    <Head>
+      <title>Loading...</title>
+    </Head>
     <div className="loading-body">
       <div className="loading-container">
         <Button variant="primary" disabled>
@@ -18,6 +23,7 @@ const LoadingPage = () => {
         </Button>
       </div>
     </div>
+    </>
   );
 };
 
