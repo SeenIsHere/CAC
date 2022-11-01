@@ -42,6 +42,14 @@ const HomeNavBar = () => {
             </Nav.Item>
             <Nav.Item>
               <Nav.Link
+                onClick={() => {
+                  Router.push("/");
+                }}>
+                Example Data
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link
                 href="https://www.buymeacoffee.com/spie"
                 className="py-0">
                 <Buymeacoffee width="169.2" height="36"/>
